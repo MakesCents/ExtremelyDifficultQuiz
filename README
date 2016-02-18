@@ -1,1 +1,1 @@
-This is a git repo
+This is a git repository
