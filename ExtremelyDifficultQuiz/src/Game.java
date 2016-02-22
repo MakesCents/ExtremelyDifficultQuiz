@@ -13,6 +13,8 @@ public class Game {
 	public static int WIDTH = 1200, HEIGHT = 900;
 	
 	public Game(){
+//		BackgroundMusic music = new BackgroundMusic();
+//		music.music();
 		window = new Window(WIDTH, HEIGHT, "Extremely Difficult Quiz");
 	}
 	
@@ -26,5 +28,8 @@ public class Game {
 	
 	public void run(){
 		
+	}
+	public static void main(String[] args){
+		Game game = new Game();
 	}
 }
