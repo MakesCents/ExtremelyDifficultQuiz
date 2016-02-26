@@ -25,12 +25,6 @@ public class Window extends Canvas{
 		frame.setLocationRelativeTo(null);	//put in middle of screen
 		frame.setTitle(title);		//Title obviously
 		frame.setResizable(false);	//Now you can't change the size
-		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-		listener = new Listener();
-		button1 = new JButton("YOU");
-		button1.addActionListener(listener);
-		button1.setAlignmentX(Component.CENTER_ALIGNMENT);
-		frame.getContentPane().add(button1);
 	    frame.pack();
 	    frame.setVisible(true);
 	

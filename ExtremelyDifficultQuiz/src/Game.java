@@ -7,7 +7,7 @@
 
 package src;
 
-public class Game {
+public class Game{
 
 	public Window window;
 	public static int WIDTH = 1200, HEIGHT = 900;
@@ -16,7 +16,8 @@ public class Game {
 	public Game(){
 //		BackgroundMusic music = new BackgroundMusic();
 //		music.music();
-		window = new Window(WIDTH, HEIGHT, "Extremely Difficult Quiz");
+		StartMenu start = new StartMenu(WIDTH,HEIGHT, "Extremely Difficult Quiz");
+		//window = new Window(WIDTH, HEIGHT, "Extremely Difficult Quiz");
 		start();
 	}
 	
