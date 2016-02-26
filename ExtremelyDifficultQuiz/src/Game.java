@@ -16,7 +16,8 @@ public class Game {
 	public Game(){
 //		BackgroundMusic music = new BackgroundMusic();
 //		music.music();
-		window = new Window(WIDTH, HEIGHT, "Extremely Difficult Quiz");
+		StartMenu start = new StartMenu(WIDTH,HEIGHT,"EXTREMELY DIFFICULT QUIZ");
+		//window = new Window(WIDTH, HEIGHT, "Extremely Difficult Quiz");
 		start();
 	}
 	

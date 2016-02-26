@@ -1,3 +1,9 @@
+/*
+ * Author: Matt Kinzler
+ * Date: 2/25/16
+ * 
+ * Adds the beginning of a start menu
+ */
 package src;
 
 import java.awt.BorderLayout;
