@@ -1,3 +1,0 @@
-Go into Eclipse and right click the project, then go build path and configure build path.
-Look at libraries. If there is a random .jar file in there, remove it (Using remove option)
-and create an issue so someone can fix it
