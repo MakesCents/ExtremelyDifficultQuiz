@@ -22,11 +22,12 @@ public class Menu {
 	private BufferedImage image = new BufferedImage(Game.WIDTH,Game.HEIGHT,BufferedImage.TYPE_INT_RGB);
 	private BufferedImage spriteSheet = null;
 	private BufferedImage background = null;
-
+	private BufferedImage title;
 	private BufferedImage back;
 	private BufferedImage logo;
-	private BufferedImage title;
 	private BufferedImage finger;
+	private BufferedImage link;
+	
 	private Menu menu;
 	private Game game;
 	private boolean startClick=false,increasing = true,soundClick=true;
@@ -46,14 +47,14 @@ public class Menu {
 
 			logo = loader.loadImage("/sprite_logo1.png");
 
-			title=loader.loadImage("/Start.png");
+			title=loader.loadImage("/start.png");
 
 			finger = loader.loadImage("/finger.png");
 
 			back=loader.loadImage("/background.png");
 
-
-
+			link= loader.loadImage("/linknoback2.PNG");
+			
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -76,9 +77,10 @@ public class Menu {
 		g.setFont(fnt1);
 		g.drawString(start, startBtn.x+25, startBtn.y+70);
 		g.setFont(fnt2);
-		
+		g.drawImage(title, 105, 200, 1000, 800, game);
 		g.drawString(sound, (soundBtn.x+sound.length()/2+3), soundBtn.y+35);
 		g.drawImage(logo, 1100, 800, 100, 100, game);
+		g.drawImage(link, 0, -140, 1200, 1000, game);
 		if(startClick == true){
 			g.setColor(Color.white);
 			g2d.draw(startBtn);
