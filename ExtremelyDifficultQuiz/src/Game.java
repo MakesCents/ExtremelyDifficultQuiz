@@ -41,7 +41,12 @@ public class Game extends Canvas implements Runnable {
 		setMaximumSize(new Dimension(WIDTH,HEIGHT));
 		setMinimumSize(new Dimension(WIDTH,HEIGHT));
 		
+<<<<<<< HEAD
 		q1 = new Q1();
+=======
+		q1=new Q1(this);
+		
+>>>>>>> MattBranch
 		correct = new Correct();
 		
 		JFrame frame = new JFrame(TITLE);
