@@ -155,6 +155,16 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		Graphics g = bs.getDrawGraphics();
+<<<<<<< HEAD
+		if(state==STATE.MENU){
+		/////////////////////////////
+
+		menu.render(g);
+	
+			
+		/////////////////////////////
+		}else if (state == STATE.Q1){
+=======
 		if (state == STATE.MENU) {
 			/////////////////////////////
 			// g.setColor(Color.black);
@@ -163,6 +173,7 @@ public class Game extends Canvas implements Runnable {
 
 			/////////////////////////////
 		} else if (state == STATE.Q1) {
+>>>>>>> master
 			q1.render(g);
 		} else if (state == STATE.CORRECT) {
 			correct.render(g);

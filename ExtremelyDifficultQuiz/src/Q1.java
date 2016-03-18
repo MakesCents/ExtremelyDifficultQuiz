@@ -30,7 +30,6 @@ public class Q1 {
 		g.setColor(Color.white);
 		Font fnt = new Font("arial black", 1, 40);
 		g.setFont(fnt);
-		//g.drawString("1", 20, 50);
 		g.fillRect(100, 100, 1000, 100);
 		g.setColor(Color.red);
 		g.drawString("How many legs does an octopus have?", 150, 150);
