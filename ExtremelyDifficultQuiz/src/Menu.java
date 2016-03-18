@@ -30,7 +30,8 @@ public class Menu {
 	
 	private Menu menu;
 	private Game game;
-	private boolean startClick=false,increasing = true,soundClick=true;
+	public boolean startClick=false,increasing = true;
+	public boolean soundClick=true;
 	private int counter;
 
 
