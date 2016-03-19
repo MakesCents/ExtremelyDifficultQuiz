@@ -3,6 +3,10 @@
   src: url("/fonts/FFFFORWA.TTF");
 }
 @font-face {
+  font-family: '8-bit';
+  src: url("8-bit.ttf");
+}
+@font-face {
   font-family: 'OpenSansLight';
   src: url("../fonts/OpenSans-Light-webfont.eot");
   src: url("../fonts/OpenSans-Light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/OpenSans-Light-webfont.woff") format("woff"), url("../fonts/OpenSans-Light-webfont.ttf") format("truetype"), url("../fonts/OpenSans-Light-webfont.svg#OpenSansLight") format("svg");
@@ -95,5 +99,6 @@ body {
   color: white;
   margin-top: 40px;
   width: 600px;
+  height: 100%;
   
 }
