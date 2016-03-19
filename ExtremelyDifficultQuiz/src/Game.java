@@ -1,7 +1,7 @@
 /*
  * Author: Matthew Kinzler
  * Date: 2/26/2016
- * 
+ *
  * Adding graphics
  */
 
@@ -29,7 +29,6 @@ import javax.swing.JFrame;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	public Window window;
 	public static final int WIDTH = 1200, HEIGHT = 900;
 	public static final String TITLE = "Extremely Difficult Quiz";
 
@@ -47,14 +46,13 @@ public class Game extends Canvas implements Runnable {
 
 		bgAudio = new PlayAudio("/res/running_rerun.wav");
 		bgAudio.loop();
-
 		this.addMouseListener(new MouseInput(menu, this));
-		handler = new Handler(this);
-		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		setMaximumSize(new Dimension(WIDTH, HEIGHT));
-		setMinimumSize(new Dimension(WIDTH, HEIGHT));
+		handler=new Handler(this);
+		setPreferredSize(new Dimension(WIDTH,HEIGHT));
+		setMaximumSize(new Dimension(WIDTH,HEIGHT));
+		setMinimumSize(new Dimension(WIDTH,HEIGHT));
 
-		q1 = new Q1(this);
+		q1=new Q1(this);
 
 		correct = new Correct();
 
@@ -75,12 +73,11 @@ public class Game extends Canvas implements Runnable {
 
 	public static STATE state = STATE.MENU;
 
-	public void init() {
+	public void init(){
 
 	}
-
-	private synchronized void start() {
-		if (running)
+	private synchronized void start(){
+		if(running)
 			return;
 
 		running = true;
@@ -88,8 +85,8 @@ public class Game extends Canvas implements Runnable {
 		thread.start();
 	}
 
-	private synchronized void stop() {
-		if (!running)
+	private synchronized void stop(){
+		if(!running)
 			return;
 
 		running = false;
@@ -102,7 +99,7 @@ public class Game extends Canvas implements Runnable {
 		System.exit(1);
 	}
 
-	public void run() {
+	public void run(){
 		init();
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 60.0;
@@ -112,11 +109,11 @@ public class Game extends Canvas implements Runnable {
 		int frames = 0;
 		long timer = System.currentTimeMillis();
 
-		while (running) {
+		while (running){
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-			if (delta >= 1) {
+			if(delta >= 1){
 				tick();
 				updates++;
 				delta--;
@@ -124,7 +121,7 @@ public class Game extends Canvas implements Runnable {
 			render();
 			frames++;
 
-			if (System.currentTimeMillis() - timer > 1000) {
+			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
 				System.out.println(updates + " Ticks, Fps " + frames);
 				updates = 0;
@@ -134,55 +131,44 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 
-	private void tick() {
-		if (state == STATE.MENU) {
+	private void tick(){
+		if(state == STATE.MENU){
 			menu.tick();
 		}
 
 	}
 
-	public STATE getState() {
+	public STATE getState(){
 		return STATE.MENU;
 	}
 
-	private void render() {
+	private void render(){
 
 		BufferStrategy bs = this.getBufferStrategy();
 
-		if (bs == null) {
+		if(bs == null){
 			createBufferStrategy(3);
 			return;
 		}
 
 		Graphics g = bs.getDrawGraphics();
-<<<<<<< HEAD
 		if(state==STATE.MENU){
-		/////////////////////////////
+			/////////////////////////////
 
 		menu.render(g);
-	
-			
+
+
 		/////////////////////////////
 		}else if (state == STATE.Q1){
-=======
-		if (state == STATE.MENU) {
-			/////////////////////////////
-			// g.setColor(Color.black);
-			// g.fillRect(0, 0, 1200, 900);
-			menu.render(g);
-
-			/////////////////////////////
-		} else if (state == STATE.Q1) {
->>>>>>> master
 			q1.render(g);
-		} else if (state == STATE.CORRECT) {
+		}else if (state == STATE.CORRECT){
 			correct.render(g);
 		}
 		g.dispose();
 		bs.show();
 	}
 
-	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+	public static void main(String[] args)throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		Game game = new Game();
 		game.start();
 
