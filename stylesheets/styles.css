@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'FFFF';
-  src: url("/fonts/FFFFORWA.TTF");
+  src: url("../fonts/FFFFORWA.TTF");
 }
 @font-face {
   font-family: '8-bit';
@@ -84,7 +84,7 @@
  * Corrects block display not defined in IE6/7/8/9 & FF3
  */
 body {
-  background-image: url("/images/8bitBG.png");
+  background-image: url("../images/8bitBG.png");
   background-color: darkgrey;
   }
 
