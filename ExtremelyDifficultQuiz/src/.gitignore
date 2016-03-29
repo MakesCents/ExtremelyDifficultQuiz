@@ -8,3 +8,16 @@
 /StartMenu.class
 /Button.class
 /Window$Listener.class
+/BufferedImageLoader.class
+/ClipHandler.class
+/Correct.class
+/Game$STATE.class
+/Handler.class
+/Menu.class
+/MouseInput.class
+/PlayAudio.class
+/Q1.class
+/SpriteSheet.class
+/Time$1.class
+/Time.class
+/UnitTesting.class

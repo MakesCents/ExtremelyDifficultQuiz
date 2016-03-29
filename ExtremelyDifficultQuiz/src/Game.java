@@ -8,22 +8,13 @@
 package src;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
@@ -34,7 +25,8 @@ public class Game extends Canvas implements Runnable {
 
 	private boolean running = false;
 	private Thread thread;
-	private Menu menu;
+	public Menu menu;
+	@SuppressWarnings("unused")
 	private Handler handler;
 	private Q1 q1;
 	private Correct correct;
@@ -93,7 +85,6 @@ public class Game extends Canvas implements Runnable {
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.exit(1);
@@ -141,6 +132,8 @@ public class Game extends Canvas implements Runnable {
 	public STATE getState(){
 		return STATE.MENU;
 	}
+	
+
 
 	private void render(){
 

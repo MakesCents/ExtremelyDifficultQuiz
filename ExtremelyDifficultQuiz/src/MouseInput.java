@@ -82,17 +82,7 @@ public class MouseInput implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		int mx = e.getX();
-		int my=e.getY();
-	
-		if(mx>=(Game.WIDTH-200)/2 && mx <= (Game.WIDTH-200)/2+200){
-			if(my >= 400 && my <= 500){
-				//Click on Play Button
-				System.out.println("CLICK");
-				menu.setClick();
-				game.state = Game.STATE.Q1;
-			}
-		}
+
 	}
 
 	@Override

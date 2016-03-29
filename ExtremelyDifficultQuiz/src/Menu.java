@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.IOException;
 
 public class Menu {
@@ -16,19 +15,12 @@ public class Menu {
 
 	public Rectangle startBtn = new Rectangle((Game.WIDTH-200)/2, 400,200,100);
 	public Rectangle soundBtn = new Rectangle(Game.WIDTH-225, 825,100,50);
-	private Graphics newg;
-	private Graphics2D newg2d;
-
-	private BufferedImage image = new BufferedImage(Game.WIDTH,Game.HEIGHT,BufferedImage.TYPE_INT_RGB);
-	private BufferedImage spriteSheet = null;
-	private BufferedImage background = null;
 	private BufferedImage title;
 	private BufferedImage back;
 	private BufferedImage logo;
 	private BufferedImage finger;
 	private BufferedImage link;
 
-	private Menu menu;
 	private Game game;
 	public boolean startClick=false,increasing = true, soundClick=true;
 	private int counter;

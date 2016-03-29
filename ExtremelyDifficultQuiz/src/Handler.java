@@ -10,12 +10,14 @@ public class Handler {
 		this.g=g;
 	}
 	
+	@SuppressWarnings("static-access")
 	public void tick(){
 		if(g.state==g.getState()){
 		
 		}
 	}
 	
+	@SuppressWarnings("static-access")
 	public void render(Graphics g){
 		if(this.g.state==this.g.getState()){
 			
