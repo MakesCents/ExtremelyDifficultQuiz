@@ -1,24 +1,17 @@
 package src;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.awt.*;
 
-public class Q1 {
+public class Q3 {
 
 	private Game game;
 	private Time timer;
-
-	public Q1(Game g){
-		game=g;
-		
-		BufferedImageLoader load = new BufferedImageLoader();
-		
+	
+	public Q3(Game game){
+		this.game = game;
 		timer = new Time(game);
-		
 	}
+	
 	public void render(Graphics g){
 		
 		g.setColor(Color.cyan);
@@ -31,20 +24,20 @@ public class Q1 {
 		//g.drawString("1", 20, 50);
 		g.fillRect(100, 100, 1000, 100);
 		g.setColor(Color.red);
-		g.drawString("How many legs does an octopus have?", 150, 150);
+		g.drawString("How much is 10 + 10?", 150, 150);
 		g.fillRect(100, 250, 800, 100);
 		g.fillRect(100, 400, 800, 100);
 		g.fillRect(100, 550, 800, 100);
 		g.fillRect(100, 700, 800, 100);
 		g.setColor(Color.cyan);
-		g.drawString("4", 120, 290);
-		g.drawString("8", 120, 440);
-		g.drawString("7", 120, 590);
-		g.drawString("Taco", 120, 740);
+		g.drawString("1010", 120, 290);
+		g.drawString("4", 120, 440);
+		g.drawString("100", 120, 590);
+		g.drawString("20", 120, 740);
 		timer.render(g, 15);
 	}
-
+	
 	public void tick(){
-
+		
 	}
 }

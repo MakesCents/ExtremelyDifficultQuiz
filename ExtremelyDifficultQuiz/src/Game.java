@@ -1,7 +1,7 @@
 /*
  * Author: Matthew Kinzler
  * Date: 2/26/2016
- *
+ * 
  * Adding graphics
  */
 
@@ -14,21 +14,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
+	public Window window;
 	public static final int WIDTH = 1200, HEIGHT = 900;
 	public static final String TITLE = "Extremely Difficult Quiz";
 
@@ -37,25 +30,27 @@ public class Game extends Canvas implements Runnable {
 	private Menu menu;
 	private Handler handler;
 	private Q1 q1;
+	private Q2 q2;
+	private Q3 q3;
 	private Correct correct;
-	public static PlayAudio bgAudio;
+	private MouseInput mouse;
 
-	@SuppressWarnings("static-access")
-	public Game() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+	public Game(){
 		menu = new Menu(this);
-
-		bgAudio = new PlayAudio("/res/running_rerun.wav");
-		bgAudio.loop();
-		this.addMouseListener(new MouseInput(menu, this));
+		
+		
 		handler=new Handler(this);
 		setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		setMaximumSize(new Dimension(WIDTH,HEIGHT));
 		setMinimumSize(new Dimension(WIDTH,HEIGHT));
 
-		q1=new Q1(this);
-
-		correct = new Correct();
-
+		q1 = new Q1(this);
+		q2 = new Q2(this);
+		q3 = new Q3(this);
+		correct = new Correct(this);
+		
+		this.addMouseListener(new MouseInput(menu, this, correct));
+		
 		JFrame frame = new JFrame(TITLE);
 		frame.add(this);
 		frame.pack();
@@ -63,18 +58,26 @@ public class Game extends Canvas implements Runnable {
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
+	
 		start();
 	}
-
-	public enum STATE {
-		MENU, GAME, Q1, CORRECT
+	
+	
+	public enum STATE{
+		MENU,
+		GAME,
+		Q1,
+		Q2,
+		Q3,
+		CORRECT
 	};
-
+	
 	public static STATE state = STATE.MENU;
 
 	public void init(){
-
+	
+		
+	
 	}
 	private synchronized void start(){
 		if(running)
@@ -134,10 +137,12 @@ public class Game extends Canvas implements Runnable {
 	private void tick(){
 		if(state == STATE.MENU){
 			menu.tick();
+		}else if (state == STATE.CORRECT){
+			correct.tick();
 		}
-
+		
 	}
-
+	
 	public STATE getState(){
 		return STATE.MENU;
 	}
@@ -153,24 +158,27 @@ public class Game extends Canvas implements Runnable {
 
 		Graphics g = bs.getDrawGraphics();
 		if(state==STATE.MENU){
-			/////////////////////////////
-
-		menu.render(g);
-
-
-		/////////////////////////////
+			menu.render(g);
 		}else if (state == STATE.Q1){
 			q1.render(g);
 		}else if (state == STATE.CORRECT){
 			correct.render(g);
+		}else if (state == STATE.Q2){
+			q2.render(g);
+		}else if (state == STATE.Q3){
+			q3.render(g);
 		}
+		
+		//else if (state == STATE.WRONG){
+			//wrong.render(g);
+		//}
 		g.dispose();
 		bs.show();
 	}
 
-	public static void main(String[] args)throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+	public static void main(String[] args){
 		Game game = new Game();
 		game.start();
-
+		
 	}
 }

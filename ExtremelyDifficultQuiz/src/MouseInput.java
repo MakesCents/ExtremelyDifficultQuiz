@@ -5,16 +5,20 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import src.Game.STATE;
+
 public class MouseInput implements MouseListener {
 
 	private Menu menu;
 	private Graphics g;
 	private Graphics2D g2d;
 	private Game game;
-	private PlayAudio onclick;
-	public MouseInput(Menu m, Game game){
+	private Correct correct;
+	
+	public MouseInput(Menu m, Game game, Correct correct){
 		menu=m;
 		this.game = game;
+		this.correct = correct;
 	}
 
 	@Override
@@ -33,12 +37,7 @@ public class MouseInput implements MouseListener {
 
 		int mx = e.getX();
 		int my=e.getY();
-//		try {
-//			onclick = new PlayAudio("/res/Bloops1.wav");
-//			onclick.play();
-//		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e1) {
-//			e1.printStackTrace();
-//		}
+		
 		
 		
 		if (game.state == Game.STATE.MENU){
@@ -52,7 +51,7 @@ public class MouseInput implements MouseListener {
 			}
 			if(mx>=(Game.WIDTH-225) && mx <= (Game.WIDTH-100)){
 				if(my >= 825 && my <= 875){
-					//Click on Play Button
+					//Click on sound Button
 					menu.setSound();
 				}
 			}
@@ -70,6 +69,7 @@ public class MouseInput implements MouseListener {
 				else if(my >= 550 && my <= 650){
 					System.out.println("Right!!");
 					game.state = Game.STATE.CORRECT;
+					correct.setPrevious(1);
 				}
 				else if(my >= 700 && my <= 500){
 					System.out.println("wrong3");
@@ -77,6 +77,45 @@ public class MouseInput implements MouseListener {
 			}
 		}
 
+		
+		if (game.state == Game.STATE.Q2){
+			if(mx >= 100 && mx <= 900){
+				if(my >= 250 && my <= 350){
+					System.out.println("wrong");
+				}
+				else if(my >= 400 && my <= 500){
+					System.out.println("wrong2");
+				}
+				else if(my >= 550 && my <= 650){
+					System.out.println("Right!!");
+					game.state = Game.STATE.CORRECT;
+					correct.setPrevious(2);
+				}
+				else if(my >= 700 && my <= 500){
+					System.out.println("wrong3");
+				}
+			}
+		}
+		
+		if (game.state == Game.STATE.Q3){
+			if(mx >= 100 && mx <= 900){
+				if(my >= 250 && my <= 350){
+					System.out.println("wrong");
+				}
+				else if(my >= 550 && my <= 650){
+					System.out.println("wrong2");
+				}
+				else if(my >= 400 && my <= 500){
+					System.out.println("Right!!");
+					game.state = Game.STATE.CORRECT;
+					correct.setPrevious(3);
+				}
+				else if(my >= 700 && my <= 500){
+					System.out.println("wrong3");
+				}
+			}
+		}
+		
 
 	}
 

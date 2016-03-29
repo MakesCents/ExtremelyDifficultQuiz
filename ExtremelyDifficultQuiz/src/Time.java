@@ -67,19 +67,15 @@ public class Time {
 		
 		tick();
 	}
-	
-	public void stop(){
-		timer.stop();
-	}
+
 
 
 
 	public void tick(){
 		if(clock==done){
 			clock=0;
-			num=done;
+			num=done+1;
 			System.out.println("Time's Up!");
-			timer.stop();
 			game.state=Game.state.MENU;
 		}
 		else{

@@ -27,10 +27,10 @@ public class Menu {
 	private BufferedImage logo;
 	private BufferedImage finger;
 	private BufferedImage link;
-
+	
 	private Menu menu;
 	private Game game;
-	public boolean startClick=false,increasing = true, soundClick=true;
+	private boolean startClick=false,increasing = true,soundClick=true;
 	private int counter;
 
 
@@ -54,7 +54,7 @@ public class Menu {
 			back=loader.loadImage("/res/background.png");
 
 			link= loader.loadImage("/res/linknoback2.PNG");
-
+			
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -111,7 +111,7 @@ public class Menu {
 			counter--;
 		if(counter==30){
 			increasing =false;
-		}
+		}	
 		else if(counter==0){
 			increasing =true;
 		}
