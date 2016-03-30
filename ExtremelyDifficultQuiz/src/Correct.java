@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class Correct {
 	
-	private int counter = 0, previous = 0, cookiecount = 0;
-	private BufferedImage park, cookie1, cookie2, cookie3, cookie5, cookie4;	
+	private int counter = 0, previous = 0;
+	private BufferedImage park, cookie1, cookie2, cookie3, cookie4;	
 	private Game game;
 	
 	public Correct(Game game){
@@ -22,7 +22,7 @@ public class Correct {
 			cookie2 = load.loadImage("/res/cookie2.png");
 			cookie3 = load.loadImage("/res/cookie3.png");
 			cookie4 = load.loadImage("/res/cookie4.png");
-			cookie5 = load.loadImage("/res/cookie5.png");
+			load.loadImage("/res/cookie5.png");
 		}catch(IOException e){
 			e.printStackTrace();
 		}

@@ -9,17 +9,13 @@ public class Q2 {
 	private Game game;
 	private Time timer;
 
-	public Q2(Game g){
-		game=g;
-		
-		BufferedImageLoader load = new BufferedImageLoader();
-		
+	public Q2(Game g) {
+		game = g;
 		timer = new Time(game);
-		
 	}
-	
-	public void render(Graphics g){
-		
+
+	public void render(Graphics g) {
+
 		g.setColor(Color.cyan);
 		g.fillRect(0, 0, Game.WIDTH + 20, Game.HEIGHT + 20);
 		g.setColor(Color.white);
@@ -27,7 +23,7 @@ public class Q2 {
 		g.setColor(Color.white);
 		Font fnt = new Font("arial black", 1, 40);
 		g.setFont(fnt);
-		//g.drawString("1", 20, 50);
+		// g.drawString("1", 20, 50);
 		g.fillRect(100, 100, 1000, 100);
 		g.setColor(Color.red);
 		g.drawString("What nationality is Mario?", 150, 150);
@@ -43,7 +39,7 @@ public class Q2 {
 		timer.render(g, 15);
 	}
 
-	public void tick(){
+	public void tick() {
 
 	}
 }

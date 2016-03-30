@@ -4,11 +4,9 @@ import java.awt.*;
 
 public class Q3 {
 
-	private Game game;
 	private Time timer;
 	
 	public Q3(Game game){
-		this.game = game;
 		timer = new Time(game);
 	}
 	

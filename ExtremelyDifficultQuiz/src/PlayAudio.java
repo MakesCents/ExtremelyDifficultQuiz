@@ -7,7 +7,7 @@ import javax.sound.sampled.*;
 
 public class PlayAudio {
 	static long clipTime;
-	static String path;
+	String path;
 	static Clip clip;
 	static AudioInputStream stream;
 	static AudioFormat format;
@@ -29,13 +29,13 @@ public class PlayAudio {
 
 	public synchronized static void play() throws LineUnavailableException, IOException {
 		clip.open(stream);
-		new ClipHandler(clip).play();
+//		new ClipHandler(clip).play();
 	}
 
 	public static synchronized void loop() throws LineUnavailableException, IOException {
 		clip.open(stream);
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
-		new ClipHandler(clip).play();
+//		new ClipHandler(clip).play();
 	}
 
 	public static void pause(Boolean loop) throws LineUnavailableException, IOException {
@@ -44,10 +44,10 @@ public class PlayAudio {
 		else if(loop){
 			clip.open(stream);
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
-			new ClipHandler(clip).play();
+//			new ClipHandler(clip).play();
 		}else{
 			clip.open(stream);
-			new ClipHandler(clip).play();
+//			new ClipHandler(clip).play();
 		}
 	}
 	

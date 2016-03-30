@@ -8,20 +8,14 @@
 package src;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	public Window window;
 	public static final int WIDTH = 1200, HEIGHT = 900;
 	public static final String TITLE = "Extremely Difficult Quiz";
 
@@ -33,7 +27,6 @@ public class Game extends Canvas implements Runnable {
 	private Q2 q2;
 	private Q3 q3;
 	private Correct correct;
-	private MouseInput mouse;
 
 	public Game(){
 		menu = new Menu(this);

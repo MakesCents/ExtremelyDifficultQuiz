@@ -17,8 +17,6 @@ public class Time {
 	private int num;
 	private int done;
 	private Timer timer;
-	private int clockTens;
-	private int clockOnes;
 
 	private int tens;
 	private int ones;
@@ -68,14 +66,18 @@ public class Time {
 		tick();
 	}
 
+	public void stop(){
+		timer.stop();
+	}
 
 
-
+	@SuppressWarnings("static-access")
 	public void tick(){
 		if(clock==done){
 			clock=0;
-			num=done+1;
+			num=done;
 			System.out.println("Time's Up!");
+			timer.stop();
 			game.state=Game.state.MENU;
 		}
 		else{
