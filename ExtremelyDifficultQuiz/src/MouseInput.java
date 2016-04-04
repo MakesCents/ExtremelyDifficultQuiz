@@ -45,7 +45,13 @@ public class MouseInput implements MouseListener {
 			if (mx >= (Game.WIDTH - 225) && mx <= (Game.WIDTH - 100)) {
 				if (my >= 825 && my <= 875) {
 					// Click on sound Button
-					menu.setSound();
+					if(Menu.getSound()){
+						Menu.setSound();
+						game.PA.Pause();
+					}else{
+						Menu.setSound();
+						game.PA.Resume();
+					}
 				}
 			}
 		}
@@ -57,6 +63,9 @@ public class MouseInput implements MouseListener {
 				} else if (my >= 400 && my <= 500) {
 					System.out.println("wrong2");
 				} else if (my >= 550 && my <= 650) {
+					if(Menu.getSound()){
+						game.PA.Blip();
+					}
 					System.out.println("Right!!");
 					game.state = Game.STATE.CORRECT;
 					correct.setPrevious(1);

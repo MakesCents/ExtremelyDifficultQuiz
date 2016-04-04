@@ -27,11 +27,11 @@ public class Game extends Canvas implements Runnable {
 	private Q2 q2;
 	private Q3 q3;
 	private Correct correct;
-
+	public static boolean soundClick = true;
+	public static PlayAudio PA = new PlayAudio();
 	public Game(){
 		menu = new Menu(this);
-		
-		
+		PA.Loop("res/bg.mp3");		
 		handler=new Handler(this);
 		setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		setMaximumSize(new Dimension(WIDTH,HEIGHT));
