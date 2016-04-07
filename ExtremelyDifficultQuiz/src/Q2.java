@@ -7,11 +7,11 @@ import java.awt.Graphics;
 public class Q2 {
 
 	private Game game;
-	private Time timer;
+	private Timer timer;
 
-	public Q2(Game g) {
+	public Q2(Game g, Timer timer) {
 		game = g;
-		timer = new Time(game);
+		this.timer = timer;
 	}
 
 	public void render(Graphics g) {
@@ -36,10 +36,16 @@ public class Q2 {
 		g.drawString("Japanese", 120, 440);
 		g.drawString("Italian", 120, 590);
 		g.drawString("Mexican", 120, 740);
-		timer.render(g, 15);
+		timer.render(g);
 	}
 
 	public void tick() {
-
+		timer.tick();
+		
+	}
+	
+	public void start(){
+		timer.setTime(9);
+		timer.start();
 	}
 }
