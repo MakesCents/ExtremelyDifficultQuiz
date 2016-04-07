@@ -18,7 +18,7 @@ public class Q1 {
 	public void render(Graphics g) {
 
 		g.setColor(Color.cyan);
-		g.fillRect(0, 0, Game.WIDTH + 20, Game.HEIGHT + 20);
+		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		g.setColor(Color.white);
 		g.fillOval(10, 10, 50, 50);
 		g.setColor(Color.white);

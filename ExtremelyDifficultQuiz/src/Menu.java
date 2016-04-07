@@ -49,7 +49,7 @@ public class Menu {
 		Font fnt2 = new Font("arial", Font.PLAIN, 20);
 		g.setFont(fnt0);
 		g.setColor(Color.yellow);
-		g.drawImage(back, 0, 0, Game.WIDTH + 20, Game.HEIGHT + 20, game);
+		g.drawImage(back, 0, 0, Game.WIDTH, Game.HEIGHT, game);
 		g.drawImage(finger, 420 - counter, 400, 100, 100, game);
 		g.setColor(Color.blue);
 		g.setFont(fnt1);
