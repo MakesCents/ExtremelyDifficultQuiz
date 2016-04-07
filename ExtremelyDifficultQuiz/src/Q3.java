@@ -4,10 +4,10 @@ import java.awt.*;
 
 public class Q3 {
 
-	private Timer timer;
+	private Time timer;
 	
-	public Q3(Game game, Timer timer){
-		this.timer = timer;
+	public Q3(Game game){
+		timer = new Time(game);
 	}
 	
 	public void render(Graphics g){
@@ -32,16 +32,10 @@ public class Q3 {
 		g.drawString("4", 120, 440);
 		g.drawString("100", 120, 590);
 		g.drawString("20", 120, 740);
-		timer.render(g);
+		timer.render(g, 15);
 	}
 	
 	public void tick(){
-		timer.tick();
 		
-	}
-	
-	public void start(){
-		timer.setTime(9);
-		timer.start();
 	}
 }

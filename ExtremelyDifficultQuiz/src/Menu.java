@@ -22,7 +22,7 @@ public class Menu {
 	private BufferedImage link;
 
 	private Game game;
-	public boolean startClick = false, increasing = true, soundClick = true;
+	public boolean startClick = false, increasing = true;
 	private int counter;
 
 	public Menu(Game game) {
@@ -58,6 +58,7 @@ public class Menu {
 		g.drawImage(title, 105, 200, 1000, 800, game);
 		g.drawString(sound, (soundBtn.x + sound.length() / 2 + 3), soundBtn.y + 35);
 		g.drawImage(logo, 1100, 800, 100, 100, game);
+		g.drawImage(link, 0, -140, 1200, 1000, game);
 		if (startClick == true) {
 			g.setColor(Color.white);
 			g2d.draw(startBtn);
@@ -65,7 +66,7 @@ public class Menu {
 			g.setColor(Color.blue);
 			g2d.draw(startBtn);
 		}
-		if (soundClick == true) {
+		if (Game.soundClick == true) {
 			g.setColor(new Color(0, 128, 13));
 			g2d.draw(soundBtn);
 		} else {
@@ -90,8 +91,12 @@ public class Menu {
 		}
 	}
 
-	public void setSound() {
-		soundClick = !soundClick;
+	public static void setSound() {
+		Game.soundClick = !Game.soundClick;
+		System.out.println("Soundclick is now"+ Game.soundClick);
+	}
+	public static boolean getSound(){
+		return Game.soundClick;
 	}
 
 }

@@ -8,15 +8,11 @@ public class MouseInput implements MouseListener {
 	private Menu menu;
 	private Game game;
 	private Correct correct;
-	private Q1 q1;
-	private Timer timer;
-	
-	public MouseInput(Menu m, Game game, Correct correct, Q1 q1, Timer timer) {
+
+	public MouseInput(Menu m, Game game, Correct correct) {
 		menu = m;
 		this.game = game;
 		this.correct = correct;
-		this.q1 = q1;
-		this.timer = timer;
 	}
 
 	@Override
@@ -34,13 +30,6 @@ public class MouseInput implements MouseListener {
 		 * Rectangle(Game.WIDTH-225, 825,100,50);
 		 */
 
-
-	}
-
-	@SuppressWarnings("static-access")
-	@Override
-	public void mouseReleased(MouseEvent e) {
-
 		int mx = e.getX();
 		int my = e.getY();
 
@@ -50,62 +39,88 @@ public class MouseInput implements MouseListener {
 					// Click on Play Button
 					System.out.println("CLICK");
 					menu.setClick();
-					game.state = Game.STATE.Q1;
-					q1.start();
+					game.state = Game.STATE.valueOf("Q" + game.stack.pop());
 				}
 			}
 			if (mx >= (Game.WIDTH - 225) && mx <= (Game.WIDTH - 100)) {
 				if (my >= 825 && my <= 875) {
 					// Click on sound Button
-					menu.setSound();
+					if(Menu.getSound()){
+						Menu.setSound();
+						game.PA.Pause();
+					}else{
+						Menu.setSound();
+						game.PA.Resume();
+					}
 				}
 			}
 		}
 
-		else if (game.state == Game.STATE.Q1) {
+		if (game.state == Game.STATE.Q1) {
 			if (mx >= 100 && mx <= 900) {
 				if (my >= 250 && my <= 350) {
-					game.state = Game.STATE.LOSE;
+					System.out.println("wrong");
 				} else if (my >= 400 && my <= 500) {
-					game.state = Game.STATE.LOSE;
+					System.out.println("wrong2");
 				} else if (my >= 550 && my <= 650) {
+					if(Menu.getSound()){
+						game.PA.Blip();
+					}
 					System.out.println("Right!!");
 					game.state = Game.STATE.CORRECT;
 					correct.setPrevious(1);
 				} else if (my >= 700 && my <= 500) {
-					game.state = Game.STATE.LOSE;
+					System.out.println("wrong3");
 				}
 			}
 		}
 
-		else if (game.state == Game.STATE.Q2) {
+		if (game.state == Game.STATE.Q2) {
 			if (mx >= 100 && mx <= 900) {
 				if (my >= 250 && my <= 350) {
-					game.state = Game.STATE.LOSE;
+					System.out.println("wrong");
 				} else if (my >= 400 && my <= 500) {
-					game.state = Game.STATE.LOSE;
+					System.out.println("wrong2");
 				} else if (my >= 550 && my <= 650) {
 					System.out.println("Right!!");
 					game.state = Game.STATE.CORRECT;
 					correct.setPrevious(2);
 				} else if (my >= 700 && my <= 500) {
-					game.state = Game.STATE.LOSE;
+					System.out.println("wrong3");
 				}
 			}
 		}
 
-		else if (game.state == Game.STATE.Q3) {
+		if (game.state == Game.STATE.Q3) {
 			if (mx >= 100 && mx <= 900) {
 				if (my >= 250 && my <= 350) {
-					game.state = Game.STATE.LOSE;
+					System.out.println("wrong");
 				} else if (my >= 550 && my <= 650) {
-					game.state = Game.STATE.LOSE;
+					System.out.println("wrong2");
 				} else if (my >= 400 && my <= 500) {
+					System.out.println("Right!!");
 					game.state = Game.STATE.CORRECT;
-					correct.setPrevious(50);
+					correct.setPrevious(3);
 				} else if (my >= 700 && my <= 500) {
-					game.state = Game.STATE.LOSE;
+					System.out.println("wrong3");
 				}
+			}
+		}
+
+	}
+
+	@SuppressWarnings("static-access")
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		int mx = e.getX();
+		int my = e.getY();
+
+		if (mx >= (Game.WIDTH - 200) / 2 && mx <= (Game.WIDTH - 200) / 2 + 200) {
+			if (my >= 400 && my <= 500) {
+				// Click on Play Button
+				System.out.println("CLICK");
+				menu.setClick();
+				game.state = Game.STATE.Q1;
 			}
 		}
 	}

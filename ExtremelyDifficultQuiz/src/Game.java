@@ -11,6 +11,10 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Stack;
+
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
@@ -20,7 +24,6 @@ public class Game extends Canvas implements Runnable {
 	public static final String TITLE = "Extremely Difficult Quiz";
 
 	private boolean running = false;
-	
 	private Thread thread;
 	private Menu menu;
 	private Handler handler;
@@ -28,30 +31,41 @@ public class Game extends Canvas implements Runnable {
 	private Q2 q2;
 	private Q3 q3;
 	private Correct correct;
-	private Lose lose;
-	
-	private Timer timer;
+	public static boolean soundClick = true;
+	public static PlayAudio PA = new PlayAudio();
+	public Stack<Integer> stack;
 	
 	public Game(){
 		menu = new Menu(this);
-		
-		
+		PA.Loop("res/bg.mp3");		
 		handler=new Handler(this);
 		setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		setMaximumSize(new Dimension(WIDTH,HEIGHT));
 		setMinimumSize(new Dimension(WIDTH,HEIGHT));
+
+		q1 = new Q1(this);
+		q2 = new Q2(this);
+		q3 = new Q3(this);
+		correct = new Correct(this);
 		
-		timer = new Timer(this);
+		ArrayList<Integer> questionlist = new ArrayList<Integer>();
+		stack = new Stack<Integer>();
+		Random r = new Random();
+		for(int x = 1;x <= 3; x++)
+		{
+			questionlist.add(x);
+		}
+		while(stack.size()<=2)
+		{
+			int num = r.nextInt(3) + 1;
+			if (questionlist.contains(num)) {
+				stack.push(num);
+				questionlist.remove(questionlist.indexOf(num));
+				System.out.println(num);
+			}
+		}
 		
-		q1 = new Q1(this, timer);
-		q2 = new Q2(this, timer);
-		q3 = new Q3(this, timer);
-		correct = new Correct(this, q2, q3);
-		lose = new Lose(this);
-		
-		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer));
-		
-		
+		this.addMouseListener(new MouseInput(menu, this, correct));
 		
 		JFrame frame = new JFrame(TITLE);
 		frame.add(this);
@@ -71,8 +85,7 @@ public class Game extends Canvas implements Runnable {
 		Q1,
 		Q2,
 		Q3,
-		CORRECT,
-		LOSE
+		CORRECT
 	};
 	
 	public static STATE state = STATE.MENU;
@@ -142,20 +155,12 @@ public class Game extends Canvas implements Runnable {
 			menu.tick();
 		}else if (state == STATE.CORRECT){
 			correct.tick();
-		}else if (state == STATE.LOSE){
-			lose.tick();
-		}else if (state == STATE.Q1){
-			q1.tick();
-		}else if (state == STATE.Q2){
-			q2.tick();
-		}else if (state == STATE.Q3){
-			q3.tick();
 		}
 		
 	}
 	
 	public STATE getState(){
-		return state;
+		return STATE.MENU;
 	}
 
 	private void render(){
@@ -178,10 +183,11 @@ public class Game extends Canvas implements Runnable {
 			q2.render(g);
 		}else if (state == STATE.Q3){
 			q3.render(g);
-		}else if (state == STATE.LOSE){
-			lose.render(g);
 		}
 		
+		//else if (state == STATE.WRONG){
+			//wrong.render(g);
+		//}
 		g.dispose();
 		bs.show();
 	}

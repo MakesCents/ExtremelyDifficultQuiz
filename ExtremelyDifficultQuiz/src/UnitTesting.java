@@ -14,7 +14,7 @@ public class UnitTesting extends TestCase {
 	Menu menu;
 	Game game;
 	Correct correct;
-	Q1 q1;
+	
 	
 	public void setUp() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		game = new Game();
@@ -30,7 +30,7 @@ public class UnitTesting extends TestCase {
 		game = new Game();		
 		menu = new Menu(game);
 		correct = new Correct(game);
-		MouseInput sdf = new MouseInput(menu, game, correct, q1);
+		MouseInput sdf = new MouseInput(menu, game, correct);
 		MouseEvent me = new MouseEvent(game, 0, 0, 0, ((Game.WIDTH-200)/2)+50, 450, 0, false);
 		sdf.mousePressed(me);
 		assertTrue(Game.state == STATE.Q1);

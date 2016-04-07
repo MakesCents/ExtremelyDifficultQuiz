@@ -7,12 +7,12 @@ import java.awt.Graphics;
 public class Q1 {
 
 	private Game game;
-	private Timer timer;
-	private boolean timing = false;
+	private Time timer;
 
-	public Q1(Game g, Timer timer) {
+	public Q1(Game g) {
 		game = g;
-		this.timer = timer;
+		timer = new Time(game);
+
 	}
 
 	public void render(Graphics g) {
@@ -37,18 +37,10 @@ public class Q1 {
 		g.drawString("8", 120, 440);
 		g.drawString("7", 120, 590);
 		g.drawString("Taco", 120, 740);
-		timer.render(g);
+		timer.render(g, 15);
 	}
-	
+
 	public void tick() {
-		timer.tick();
-		if (timer.getTime() == 0){
-			game.state = Game.STATE.MENU;
-		}
-	}
-	
-	public void start(){
-		timer.setTime(9);
-		timer.start();
+
 	}
 }
