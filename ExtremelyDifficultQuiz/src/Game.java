@@ -29,6 +29,7 @@ public class Game extends Canvas implements Runnable {
 	private Q3 q3;
 	private Correct correct;
 	private Lose lose;
+	private Win win;
 	
 	private Timer timer;
 	
@@ -48,6 +49,7 @@ public class Game extends Canvas implements Runnable {
 		q3 = new Q3(this, timer);
 		correct = new Correct(this, q2, q3);
 		lose = new Lose(this);
+		win = new Win(this);
 		
 		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer));
 		
@@ -55,12 +57,11 @@ public class Game extends Canvas implements Runnable {
 		
 		JFrame frame = new JFrame(TITLE);
 		frame.add(this);
-		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-	
+		frame.pack();
+		frame.setLocationRelativeTo(null);
 		start();
 	}
 	
@@ -72,7 +73,8 @@ public class Game extends Canvas implements Runnable {
 		Q2,
 		Q3,
 		CORRECT,
-		LOSE
+		LOSE,
+		WIN
 	};
 	
 	public static STATE state = STATE.MENU;
@@ -150,6 +152,8 @@ public class Game extends Canvas implements Runnable {
 			q2.tick();
 		}else if (state == STATE.Q3){
 			q3.tick();
+		}else if (state == STATE.WIN){
+			win.tick();
 		}
 		
 	}
@@ -180,6 +184,8 @@ public class Game extends Canvas implements Runnable {
 			q3.render(g);
 		}else if (state == STATE.LOSE){
 			lose.render(g);
+		}else if (state == STATE.WIN){
+			win.render(g);
 		}
 		
 		g.dispose();
