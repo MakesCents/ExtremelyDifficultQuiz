@@ -28,12 +28,7 @@ public class MouseInput implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		/**
-		 * public Rectangle startBtn = new Rectangle((Game.WIDTH-200)/2,
-		 * 400,200,100); public Rectangle soundBtn = new
-		 * Rectangle(Game.WIDTH-225, 825,100,50);
-		 */
-
+		
 
 	}
 
@@ -101,7 +96,7 @@ public class MouseInput implements MouseListener {
 				} else if (my >= 550 && my <= 650) {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= 400 && my <= 500) {
-					game.state = Game.STATE.CORRECT;
+					game.state = Game.STATE.WIN;
 					correct.setPrevious(50);
 				} else if (my >= 700 && my <= 500) {
 					game.state = Game.STATE.LOSE;
