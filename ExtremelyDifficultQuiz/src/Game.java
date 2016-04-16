@@ -29,21 +29,26 @@ public class Game extends Canvas implements Runnable {
 	private Correct correct;
 	public static boolean soundClick = true;
 	public static PlayAudio PA = new PlayAudio();
-	public Game(){
+
+	/**
+	 * Creates an instance of game with Width = 1200, and Height 900 Applies
+	 * starts a loop of background song Creates new instances for q1-3 and
+	 * correct Sets up mouselistener and JFrame things Calls start
+	 */
+	public Game() {
 		menu = new Menu(this);
-		PA.Loop("res/bg.mp3");		
-		handler=new Handler(this);
-		setPreferredSize(new Dimension(WIDTH,HEIGHT));
-		setMaximumSize(new Dimension(WIDTH,HEIGHT));
-		setMinimumSize(new Dimension(WIDTH,HEIGHT));
+		PA.Loop("res/bg.mp3");
+		handler = new Handler(this);
+		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		setMaximumSize(new Dimension(WIDTH, HEIGHT));
+		setMinimumSize(new Dimension(WIDTH, HEIGHT));
 
 		q1 = new Q1(this);
 		q2 = new Q2(this);
 		q3 = new Q3(this);
 		correct = new Correct(this);
-		
+
 		this.addMouseListener(new MouseInput(menu, this, correct));
-		
 		JFrame frame = new JFrame(TITLE);
 		frame.add(this);
 		frame.pack();
@@ -51,29 +56,29 @@ public class Game extends Canvas implements Runnable {
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-	
+
 		start();
 	}
-	
-	
-	public enum STATE{
-		MENU,
-		GAME,
-		Q1,
-		Q2,
-		Q3,
-		CORRECT
+
+	public enum STATE {
+		MENU, GAME, Q1, Q2, Q3, CORRECT
 	};
-	
+
 	public static STATE state = STATE.MENU;
 
-	public void init(){
-	
-		
-	
+	/**
+	 * Doesn't do anything, but doesn't it do anything? When in doubt call this
+	 * and maybe it'll fix something?
+	 */
+	public void init() {
 	}
-	private synchronized void start(){
-		if(running)
+
+	/**
+	 * Doesn't do anything if running = ture (Not spelled wrong) If not ture,
+	 * sets it tot ture and starts a new thread
+	 */
+	private synchronized void start() {
+		if (running)
 			return;
 
 		running = true;
@@ -81,8 +86,11 @@ public class Game extends Canvas implements Runnable {
 		thread.start();
 	}
 
-	private synchronized void stop(){
-		if(!running)
+	/**
+	 * If running, effectively stops thread
+	 */
+	private synchronized void stop() {
+		if (!running)
 			return;
 
 		running = false;
@@ -95,7 +103,11 @@ public class Game extends Canvas implements Runnable {
 		System.exit(1);
 	}
 
-	public void run(){
+	/**
+	 * Creates tick system, which starts at 0 Until you stop the game, continues
+	 * to report number of ticks and FPS
+	 */
+	public void run() {
 		init();
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 60.0;
@@ -105,11 +117,11 @@ public class Game extends Canvas implements Runnable {
 		int frames = 0;
 		long timer = System.currentTimeMillis();
 
-		while (running){
+		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-			if(delta >= 1){
+			if (delta >= 1) {
 				tick();
 				updates++;
 				delta--;
@@ -117,7 +129,7 @@ public class Game extends Canvas implements Runnable {
 			render();
 			frames++;
 
-			if(System.currentTimeMillis() - timer > 1000){
+			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				System.out.println(updates + " Ticks, Fps " + frames);
 				updates = 0;
@@ -127,51 +139,59 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 
-	private void tick(){
-		if(state == STATE.MENU){
+	/**
+	 * Sets
+	 */
+	private void tick() {
+		if (state == STATE.MENU) {
 			menu.tick();
-		}else if (state == STATE.CORRECT){
+		} else if (state == STATE.CORRECT) {
 			correct.tick();
 		}
-		
+
 	}
-	
-	public STATE getState(){
+
+	/**
+	 * Returns State
+	 * 
+	 * @return
+	 */
+	public STATE getState() {
 		return STATE.MENU;
 	}
 
-	private void render(){
+	private void render() {
 
 		BufferStrategy bs = this.getBufferStrategy();
 
-		if(bs == null){
+		if (bs == null) {
 			createBufferStrategy(3);
 			return;
 		}
 
 		Graphics g = bs.getDrawGraphics();
-		if(state==STATE.MENU){
+		if (state == STATE.MENU) {
 			menu.render(g);
-		}else if (state == STATE.Q1){
+		} else if (state == STATE.Q1) {
 			q1.render(g);
-		}else if (state == STATE.CORRECT){
+		} else if (state == STATE.CORRECT) {
 			correct.render(g);
-		}else if (state == STATE.Q2){
+		} else if (state == STATE.Q2) {
 			q2.render(g);
-		}else if (state == STATE.Q3){
+		} else if (state == STATE.Q3) {
 			q3.render(g);
 		}
-		
-		//else if (state == STATE.WRONG){
-			//wrong.render(g);
-		//}
+
+		// else if (state == STATE.WRONG){
+		// wrong.render(g);
+		// }
 		g.dispose();
 		bs.show();
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Game game = new Game();
 		game.start();
-		
+
 	}
 }

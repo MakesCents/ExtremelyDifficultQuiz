@@ -66,6 +66,7 @@ public class Menu {
 			g.setColor(Color.blue);
 			g2d.draw(startBtn);
 		}
+		//Colors button depending on whether or not it's muted
 		if (Game.soundClick == true) {
 			g.setColor(new Color(0, 128, 13));
 			g2d.draw(soundBtn);
@@ -93,7 +94,7 @@ public class Menu {
 
 	public static void setSound() {
 		Game.soundClick = !Game.soundClick;
-		System.out.println("Soundclick is now"+ Game.soundClick);
+		System.out.println("Soundclick is now "+ Game.soundClick);
 	}
 	public static boolean getSound(){
 		return Game.soundClick;

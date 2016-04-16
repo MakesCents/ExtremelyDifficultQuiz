@@ -159,5 +159,14 @@ public class PlayAudio {
 		}.start();
 		
 	}
+	public boolean isPlaying(){
+		boolean isPlaying;
+		if(player == null){
+			isPlaying = false;
+		}else{
+			isPlaying = true;
+		}
+		return isPlaying;
+	}
 
 }
