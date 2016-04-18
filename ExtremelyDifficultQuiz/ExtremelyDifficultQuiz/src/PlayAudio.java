@@ -39,7 +39,7 @@ public class PlayAudio {
 
 			songTotalLength = FIS.available();
 
-			fileLocation = path + "";
+			fileLocation = path;
 		} catch (FileNotFoundException | JavaLayerException ex) {
 			Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {

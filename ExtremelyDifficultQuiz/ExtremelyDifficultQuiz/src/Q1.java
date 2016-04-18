@@ -4,14 +4,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-public class Q2 {
+public class Q1 {
 
 	private Game game;
-	private Time timer;
+	private Timer timer;
+	private boolean timing = false;
 
-	public Q2(Game g) {
+	public Q1(Game g, Timer timer) {
 		game = g;
-		timer = new Time(game);
+		this.timer = timer;
 	}
 
 	public void render(Graphics g) {
@@ -26,20 +27,28 @@ public class Q2 {
 		// g.drawString("1", 20, 50);
 		g.fillRect(100, 100, 1000, 100);
 		g.setColor(Color.red);
-		g.drawString("What nationality is Mario?", 150, 150);
+		g.drawString("How many legs does an octopus have?", 150, 150);
 		g.fillRect(100, 250, 800, 100);
 		g.fillRect(100, 400, 800, 100);
 		g.fillRect(100, 550, 800, 100);
 		g.fillRect(100, 700, 800, 100);
 		g.setColor(Color.cyan);
-		g.drawString("American", 120, 290);
-		g.drawString("Japanese", 120, 440);
-		g.drawString("Italian", 120, 590);
-		g.drawString("Mexican", 120, 740);
-		timer.render(g, 15);
+		g.drawString("4", 120, 290);
+		g.drawString("8", 120, 440);
+		g.drawString("7", 120, 590);
+		g.drawString("Taco", 120, 740);
+		timer.render(g);
 	}
-
+	
 	public void tick() {
-
+		timer.tick();
+		if (timer.getTime() == 0){
+			game.state = Game.STATE.MENU;
+		}
+	}
+	
+	public void start(){
+		timer.setTime(9);
+		timer.start();
 	}
 }
