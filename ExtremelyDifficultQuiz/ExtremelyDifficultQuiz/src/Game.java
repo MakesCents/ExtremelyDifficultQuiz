@@ -1,7 +1,7 @@
 /*
  * Author: Matthew Kinzler
  * Date: 2/26/2016
- * 
+ *
  * Adding graphics
  */
 
@@ -16,46 +16,50 @@ import javax.swing.JFrame;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	public static final int WIDTH = 1100, HEIGHT = 1;
+	public static final int WIDTH = 1200, HEIGHT = 900;
 	public static final String TITLE = "Extremely Difficult Quiz";
 
 	private boolean running = false;
-	
+
 	private Thread thread;
 	private Menu menu;
 	private Handler handler;
 	private Q1 q1;
 	private Q2 q2;
 	private Q3 q3;
+	private Q4 q4;
+	private Q5 q5;
 	private Correct correct;
 	private Lose lose;
 	private Win win;
-	public PlayAudio PA;
+
 	private Timer timer;
-	
+
+
 	public Game(){
 		menu = new Menu(this);
-		PA = new PlayAudio();
-		PA.Loop("res/test.mp3");		
-		
+
+
 		handler=new Handler(this);
 		setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		setMaximumSize(new Dimension(WIDTH,HEIGHT));
 		setMinimumSize(new Dimension(WIDTH,HEIGHT));
-		
+
 		timer = new Timer(this);
-		
+
 		q1 = new Q1(this, timer);
 		q2 = new Q2(this, timer);
 		q3 = new Q3(this, timer);
+		q4 = new Q4(this, timer);
+		q5 = new Q5(this, timer);
 		correct = new Correct(this, q2, q3);
 		lose = new Lose(this);
 		win = new Win(this);
-		
+
 		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer));
-		
-		
-		
+
+
+
 		JFrame frame = new JFrame(TITLE);
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,25 +69,27 @@ public class Game extends Canvas implements Runnable {
 		frame.setLocationRelativeTo(null);
 		start();
 	}
-	
-	
+
+
 	public enum STATE{
 		MENU,
 		GAME,
 		Q1,
 		Q2,
 		Q3,
+		Q4,
+		Q5,
 		CORRECT,
 		LOSE,
 		WIN
 	};
-	
+
 	public static STATE state = STATE.MENU;
 
 	public void init(){
-	
-		
-	
+
+
+
 	}
 	private synchronized void start(){
 		if(running)
@@ -155,10 +161,14 @@ public class Game extends Canvas implements Runnable {
 			q3.tick();
 		}else if (state == STATE.WIN){
 			win.tick();
+		}else if (state == STATE.Q4){
+			q4.tick();
+		}else if (state == STATE.Q5){
+			q5.tick();
 		}
-		
+
 	}
-	
+
 	public STATE getState(){
 		return state;
 	}
@@ -187,8 +197,12 @@ public class Game extends Canvas implements Runnable {
 			lose.render(g);
 		}else if (state == STATE.WIN){
 			win.render(g);
+		}else if (state == STATE.Q4){
+			q4.render(g);
+		}else if (state == STATE.Q5){
+			q5.render(g);
 		}
-		
+
 		g.dispose();
 		bs.show();
 	}
@@ -196,6 +210,6 @@ public class Game extends Canvas implements Runnable {
 	public static void main(String[] args){
 		Game game = new Game();
 		game.start();
-		
+
 	}
 }

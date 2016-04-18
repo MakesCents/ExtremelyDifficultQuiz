@@ -5,8 +5,10 @@ import java.awt.*;
 public class Q3 {
 
 	private Timer timer;
+	private Game game;
 	
 	public Q3(Game game, Timer timer){
+		this.game = game;
 		this.timer = timer;
 	}
 	
@@ -37,7 +39,9 @@ public class Q3 {
 	
 	public void tick(){
 		timer.tick();
-		
+		if (timer.getTime() == 0){
+			game.state = Game.STATE.LOSE;
+		}
 	}
 	
 	public void start(){

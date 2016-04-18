@@ -41,9 +41,11 @@ public class Q2 {
 
 	public void tick() {
 		timer.tick();
-		
+		if (timer.getTime() == 0){
+			game.state = Game.STATE.LOSE;
+		}
 	}
-	
+
 	public void start(){
 		timer.setTime(9);
 		timer.start();

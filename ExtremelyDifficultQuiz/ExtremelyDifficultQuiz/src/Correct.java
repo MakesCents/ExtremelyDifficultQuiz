@@ -64,8 +64,10 @@ public class Correct {
 			}else if (previous == 2){
 				Game.state = Game.STATE.Q3;
 				q3.start();
-			}else if (previous == 50){
-				Game.state = Game.STATE.MENU;
+			}else if (previous == 3){
+				Game.state = Game.STATE.Q4;
+			}else if (previous == 4){
+				game.state = Game.STATE.Q5;
 			}
 			counter = 0;
 		}

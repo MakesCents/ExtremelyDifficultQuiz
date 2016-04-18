@@ -10,19 +10,19 @@ public class Lose {
 	private Game game;
 	private BufferedImage lost;
 	private int counter = 0;
-	
+
 	public Lose (Game game){
 		this.game = game;
-		
+
 //		BufferedImageLoader load = new BufferedImageLoader();
 //		try{
 //			lost = load.loadImage("...");
-//			
+//
 //		}catch(IOException e){
 //			e.printStackTrace();
 //		}
 	}
-	
+
 	public void render(Graphics g){
 		g.setColor(Color.black);
 		g.fillRect(0, 0, game.WIDTH + 12, game.HEIGHT + 12);
@@ -31,7 +31,7 @@ public class Lose {
 		g.setColor(Color.gray);
 		g.drawString("You lost :('", 100, 100);
 	}
-	
+
 	public void tick(){
 		counter++;
 		if (counter == 180){

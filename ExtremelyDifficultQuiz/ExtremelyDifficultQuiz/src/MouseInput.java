@@ -10,7 +10,7 @@ public class MouseInput implements MouseListener {
 	private Correct correct;
 	private Q1 q1;
 	private Timer timer;
-	
+
 	public MouseInput(Menu m, Game game, Correct correct, Q1 q1, Timer timer) {
 		menu = m;
 		this.game = game;
@@ -28,7 +28,6 @@ public class MouseInput implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 
 	}
 
@@ -93,6 +92,36 @@ public class MouseInput implements MouseListener {
 			if (mx >= 100 && mx <= 900) {
 				if (my >= 250 && my <= 350) {
 					game.state = Game.STATE.LOSE;
+				} else if (my >= 550 && my <= 650) {
+					game.state = Game.STATE.LOSE;
+				} else if (my >= 400 && my <= 500) {
+					game.state = Game.STATE.CORRECT;
+					correct.setPrevious(3);
+				} else if (my >= 700 && my <= 500) {
+					game.state = Game.STATE.LOSE;
+				}
+			}
+		}
+
+		else if (game.state == Game.STATE.Q4) {
+			if (mx >= 100 && mx <= 900) {
+				if (my >= 250 && my <= 350) {
+					game.state = Game.STATE.CORRECT;
+					correct.setPrevious(4);
+				} else if (my >= 550 && my <= 650) {
+					game.state = Game.STATE.LOSE;
+				} else if (my >= 400 && my <= 500) {
+					game.state = Game.STATE.LOSE;
+				} else if (my >= 700 && my <= 500) {
+					game.state = Game.STATE.LOSE;
+				}
+			}
+		}
+
+		else if (game.state == Game.STATE.Q5) {
+			if (mx >= 100 && mx <= 900) {
+				if (my >= 250 && my <= 350) {
+					game.state = Game.STATE.WIN;
 				} else if (my >= 550 && my <= 650) {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= 400 && my <= 500) {

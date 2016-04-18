@@ -47,7 +47,7 @@ public class Time {
 		tick();
 	}
 	public void render(Graphics g, int num){
-		
+
 		if(clock==0){
 			this.num = num;
 			done=num;
@@ -55,14 +55,14 @@ public class Time {
 		if(this.num>=10){
 			tens=Integer.parseInt(Integer.toString(this.num).substring(0,1));
 			ones=Integer.parseInt(Integer.toString(this.num).substring(1));
-			
+
 			g.drawImage(time[tens], 12, 17, game);
 			g.drawImage(time[ones], 30, 17, game);
 		}
 		else{
 			g.drawImage(time[this.num], 20, 17, game);
 		}
-		
+
 		tick();
 	}
 
@@ -85,4 +85,3 @@ public class Time {
 		}
 	}
 }
-
