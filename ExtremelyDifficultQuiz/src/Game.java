@@ -27,6 +27,8 @@ public class Game extends Canvas implements Runnable {
 	private Q1 q1;
 	private Q2 q2;
 	private Q3 q3;
+	private Q4 q4;
+	private Q5 q5;
 	private Correct correct;
 	private Lose lose;
 	private Win win;
@@ -47,6 +49,8 @@ public class Game extends Canvas implements Runnable {
 		q1 = new Q1(this, timer);
 		q2 = new Q2(this, timer);
 		q3 = new Q3(this, timer);
+		q4 = new Q4(this, timer);
+		q5 = new Q5(this, timer);
 		correct = new Correct(this, q2, q3);
 		lose = new Lose(this);
 		win = new Win(this);
@@ -72,6 +76,8 @@ public class Game extends Canvas implements Runnable {
 		Q1,
 		Q2,
 		Q3,
+		Q4,
+		Q5,
 		CORRECT,
 		LOSE,
 		WIN
@@ -154,6 +160,10 @@ public class Game extends Canvas implements Runnable {
 			q3.tick();
 		}else if (state == STATE.WIN){
 			win.tick();
+		}else if (state == STATE.Q4){
+			q4.tick();
+		}else if (state == STATE.Q5){
+			q5.tick();
 		}
 		
 	}
@@ -186,6 +196,10 @@ public class Game extends Canvas implements Runnable {
 			lose.render(g);
 		}else if (state == STATE.WIN){
 			win.render(g);
+		}else if (state == STATE.Q4){
+			q4.render(g);
+		}else if (state == STATE.Q5){
+			q5.render(g);
 		}
 		
 		g.dispose();

@@ -96,6 +96,36 @@ public class MouseInput implements MouseListener {
 				} else if (my >= 550 && my <= 650) {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= 400 && my <= 500) {
+					game.state = Game.STATE.CORRECT;
+					correct.setPrevious(3);
+				} else if (my >= 700 && my <= 500) {
+					game.state = Game.STATE.LOSE;
+				}
+			}
+		}
+		
+		else if (game.state == Game.STATE.Q4) {
+			if (mx >= 100 && mx <= 900) {
+				if (my >= 250 && my <= 350) {
+					game.state = Game.STATE.CORRECT;
+					correct.setPrevious(4);
+				} else if (my >= 550 && my <= 650) {
+					game.state = Game.STATE.LOSE;
+				} else if (my >= 400 && my <= 500) {
+					game.state = Game.STATE.LOSE;
+				} else if (my >= 700 && my <= 500) {
+					game.state = Game.STATE.LOSE;
+				}
+			}
+		}
+		
+		else if (game.state == Game.STATE.Q5) {
+			if (mx >= 100 && mx <= 900) {
+				if (my >= 250 && my <= 350) {
+					game.state = Game.STATE.WIN;
+				} else if (my >= 550 && my <= 650) {
+					game.state = Game.STATE.LOSE;
+				} else if (my >= 400 && my <= 500) {
 					game.state = Game.STATE.WIN;
 					correct.setPrevious(50);
 				} else if (my >= 700 && my <= 500) {

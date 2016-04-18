@@ -15,10 +15,10 @@ public class Win {
 	}
 	
 	public void render (Graphics g){
-		g.setColor(Color.gray);
+		g.setColor(Color.black);
 		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		Font fnt = new Font("arial black", 1, 40);
-		g.setColor(Color.blue);
+		g.setColor(Color.white);
 		g.setFont(fnt);
 		g.drawString("You WINNNNN!!!!", 100, 100);
 	}

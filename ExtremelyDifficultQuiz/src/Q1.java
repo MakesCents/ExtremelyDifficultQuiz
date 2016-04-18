@@ -43,7 +43,7 @@ public class Q1 {
 	public void tick() {
 		timer.tick();
 		if (timer.getTime() == 0){
-			game.state = Game.STATE.MENU;
+			game.state = Game.STATE.LOSE;
 		}
 	}
 	
