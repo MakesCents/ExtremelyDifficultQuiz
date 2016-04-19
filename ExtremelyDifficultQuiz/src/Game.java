@@ -64,6 +64,23 @@ public class Game extends Canvas implements Runnable {
 		lose = new Lose(this);
 		win = new Win(this);
 		
+		resetStack();
+
+
+		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer));
+
+
+
+		JFrame frame = new JFrame(TITLE);
+		frame.add(this);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(true);
+		frame.setVisible(true);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		start();
+	}
+	public void resetStack(){
 		ArrayList<Integer> questionList = new ArrayList<Integer>();
 		stack = new Stack<Integer>();
 		Random r = new Random();
@@ -80,22 +97,7 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 
-
-
-		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer));
-
-
-
-		JFrame frame = new JFrame(TITLE);
-		frame.add(this);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(true);
-		frame.setVisible(true);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		start();
 	}
-
 
 	public enum STATE{
 		MENU,

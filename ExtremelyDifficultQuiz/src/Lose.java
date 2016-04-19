@@ -36,6 +36,7 @@ public class Lose {
 		counter++;
 		if (counter == 180){
 			counter = 0;
+			game.resetStack();
 			game.state = Game.STATE.MENU;
 		}
 	}

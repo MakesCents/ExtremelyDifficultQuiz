@@ -47,8 +47,7 @@ public class MouseInput implements MouseListener {
 					game.state = Game.STATE.valueOf("Q" + game.stack.pop());
 					timer.setTime(9);
 					timer.start();
-//					game.state = Game.STATE.Q1;
-//					q1.start();
+
 				}
 			}
 			if (mx >= (Game.WIDTH - 225) && mx <= (Game.WIDTH - 100)) {
