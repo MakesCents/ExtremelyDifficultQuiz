@@ -1,66 +1,175 @@
 package src;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
-
-import javax.sound.sampled.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 public class PlayAudio {
-	static long clipTime;
-	String path;
-	static Clip clip;
-	static AudioInputStream stream;
-	static AudioFormat format;
-	static DataLine.Info info;
-//	FloatControl volume;
-	public PlayAudio(String path) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		this.path = path;
-		URL soundUrl = PlayAudio.class.getResource(path);
-		stream = AudioSystem.getAudioInputStream(soundUrl);
-		format = stream.getFormat();
-		info = new DataLine.Info(Clip.class, format);
-		clip = (Clip) AudioSystem.getLine(info);
-//		volume = (FloatControl) clip.getControl(FloatControl.Type.VOLUME);
-	}
 
-	public static Clip getClip() {
-		return clip;
-	}
+	FileInputStream FIS;
+	BufferedInputStream BIS;
 
-	public synchronized static void play() throws LineUnavailableException, IOException {
-		clip.open(stream);
-//		new ClipHandler(clip).play();
-	}
+	public Player player;
 
-	public static synchronized void loop() throws LineUnavailableException, IOException {
-		clip.open(stream);
-		clip.loop(Clip.LOOP_CONTINUOUSLY);
-//		new ClipHandler(clip).play();
-	}
+	public long pauseLocation;
+	public long songTotalLength;
+	public static int count;
+	public String fileLocation;
 
-	public static void pause(Boolean loop) throws LineUnavailableException, IOException {
-		if(clip.isRunning())
-			clip.stop();
-		else if(loop){
-			clip.open(stream);
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
-//			new ClipHandler(clip).play();
-		}else{
-			clip.open(stream);
-//			new ClipHandler(clip).play();
+	public void Stop() {
+		if (player != null) {
+			player.close();
+			pauseLocation = 0;
+			songTotalLength = 0;
+
 		}
 	}
+
+	public void Play(String path) {
+		try {
+			FIS = new FileInputStream(path);
+			BIS = new BufferedInputStream(FIS);
+
+			player = new Player(BIS);
+
+			songTotalLength = FIS.available();
+
+			fileLocation = path + "";
+		} catch (FileNotFoundException | JavaLayerException ex) {
+			Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
+			Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					player.play();
+				} catch (JavaLayerException ex) {
+					Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		}.start();
+
+	}
 	
-//	public static void resume() throws LineUnavailableException, IOException{
-//		if(!clip.isOpen() && !clip.isRunning())
-//			play();
-//	}
-	public void mute(Boolean tof){
-//		if (tof == true) { 
-//			volume.setValue(-3.0f);
-//		}else{
-//			volume.setValue(3.0f);
-//		}
+    public void Loop(String path) {
+        try {
+            FIS = new FileInputStream(path);
+            BIS = new BufferedInputStream(FIS);
+
+            player = new Player(BIS);
+
+            songTotalLength = FIS.available();
+
+            fileLocation = path + "";
+        } catch (FileNotFoundException | JavaLayerException ex) {
+            Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    player.play();
+
+                    if (player.isComplete()) {
+                        Loop(fileLocation);
+                    }
+                } catch (JavaLayerException ex) {
+                    Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }.start();
+
+    }
+
+	public void Pause() {
+		if (player != null) {
+			try {
+				pauseLocation = FIS.available();
+				player.close();
+			} catch (IOException ex) {
+				Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+	}
+
+	public void Resume() {
+		try {
+			FIS = new FileInputStream(fileLocation);
+			BIS = new BufferedInputStream(FIS);
+
+			player = new Player(BIS);
+
+			FIS.skip(songTotalLength - pauseLocation);
+		} catch (FileNotFoundException | JavaLayerException ex) {
+			Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
+			Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					player.play();
+					if (player.isComplete()) {
+                        Loop(fileLocation);
+                    }
+				} catch (JavaLayerException ex) {
+					Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		}.start();
+
+	}
+
+	public void Blip() {
+		String path = "res/Zoops8.mp3";
+		try {
+			FIS = new FileInputStream(path);
+			BIS = new BufferedInputStream(FIS);
+
+			player = new Player(BIS);
+
+			songTotalLength = FIS.available();
+
+			fileLocation = path + "";
+		} catch (FileNotFoundException | JavaLayerException ex) {
+			Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
+			Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					player.play();
+				} catch (JavaLayerException ex) {
+					Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+		}.start();
+		
+	}
+	public boolean isPlaying(){
+		boolean isPlaying;
+		if(player == null){
+			isPlaying = false;
+		}else{
+			isPlaying = true;
+		}
+		return isPlaying;
 	}
 
 }

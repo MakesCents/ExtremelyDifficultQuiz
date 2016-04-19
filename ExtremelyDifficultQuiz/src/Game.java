@@ -12,6 +12,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Stack;
+
 
 public class Game extends Canvas implements Runnable {
 
@@ -34,16 +38,20 @@ public class Game extends Canvas implements Runnable {
 	private Win win;
 
 	private Timer timer;
+	public static PlayAudio PA = new PlayAudio();
+	public Stack<Integer> stack;
+
 
 
 	public Game(){
 		menu = new Menu(this);
-
+//		PA.Loop("res/bg.mp3");
 
 		handler=new Handler(this);
-		setPreferredSize(new Dimension(WIDTH,HEIGHT));
-		setMaximumSize(new Dimension(WIDTH,HEIGHT));
-		setMinimumSize(new Dimension(WIDTH,HEIGHT));
+		Dimension size = new Dimension(WIDTH, HEIGHT);
+		setPreferredSize(size);
+		setMaximumSize(size);
+		setMinimumSize(size);
 
 		timer = new Timer(this);
 
@@ -55,6 +63,24 @@ public class Game extends Canvas implements Runnable {
 		correct = new Correct(this, q2, q3);
 		lose = new Lose(this);
 		win = new Win(this);
+		
+		ArrayList<Integer> questionList = new ArrayList<Integer>();
+		stack = new Stack<Integer>();
+		Random r = new Random();
+		for(int x = 1; x <= 5; x++){
+			questionList.add(x);
+		}
+		while(stack.size()<=4)
+		{
+			int num = r.nextInt(5) + 1;
+			if(questionList.contains(num)){
+				stack.push(num);
+				questionList.remove(questionList.indexOf(num));
+				System.out.println(num);
+			}
+		}
+
+
 
 		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer));
 
@@ -63,7 +89,7 @@ public class Game extends Canvas implements Runnable {
 		JFrame frame = new JFrame(TITLE);
 		frame.add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setVisible(true);
 		frame.pack();
 		frame.setLocationRelativeTo(null);

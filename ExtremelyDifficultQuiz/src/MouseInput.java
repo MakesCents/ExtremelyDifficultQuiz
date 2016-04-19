@@ -44,13 +44,15 @@ public class MouseInput implements MouseListener {
 					// Click on Play Button
 					System.out.println("CLICK");
 					menu.setClick();
-					game.state = Game.STATE.Q1;
-					q1.start();
+					game.state = Game.STATE.valueOf("Q" + game.stack.pop());
+					timer.setTime(9);
+					timer.start();
+//					game.state = Game.STATE.Q1;
+//					q1.start();
 				}
 			}
 			if (mx >= (Game.WIDTH - 225) && mx <= (Game.WIDTH - 100)) {
 				if (my >= 825 && my <= 875) {
-					// Click on sound Button
 					menu.setSound();
 				}
 			}
@@ -58,16 +60,24 @@ public class MouseInput implements MouseListener {
 
 		else if (game.state == Game.STATE.Q1) {
 			if (mx >= 100 && mx <= 900) {
+				System.out.println("mx: "+mx + " my: "+ my);
 				if (my >= 250 && my <= 350) {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= 400 && my <= 500) {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= 550 && my <= 650) {
 					System.out.println("Right!!");
-					game.state = Game.STATE.CORRECT;
-					correct.setPrevious(1);
-				} else if (my >= 700 && my <= 500) {
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(1);
+					}
+					else
+						game.state = Game.STATE.WIN;
+					if(menu.soundClick)
+						game.PA.Blip();
+				} else if (my >= 700 && my <= 800) {
 					game.state = Game.STATE.LOSE;
+					System.out.println("Why");
 				}
 			}
 		}
@@ -80,9 +90,15 @@ public class MouseInput implements MouseListener {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= 550 && my <= 650) {
 					System.out.println("Right!!");
-					game.state = Game.STATE.CORRECT;
-					correct.setPrevious(2);
-				} else if (my >= 700 && my <= 500) {
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(2);
+					}
+					else
+						game.state = Game.STATE.WIN;	
+					if(menu.soundClick)
+						game.PA.Blip();
+				} else if (my >= 700 && my <= 800) {
 					game.state = Game.STATE.LOSE;
 				}
 			}
@@ -95,9 +111,15 @@ public class MouseInput implements MouseListener {
 				} else if (my >= 550 && my <= 650) {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= 400 && my <= 500) {
-					game.state = Game.STATE.CORRECT;
-					correct.setPrevious(3);
-				} else if (my >= 700 && my <= 500) {
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(3);
+					}
+					else
+						game.state = Game.STATE.WIN;
+					if(menu.soundClick)
+						game.PA.Blip();
+				} else if (my >= 700 && my <= 800) {
 					game.state = Game.STATE.LOSE;
 				}
 			}
@@ -106,13 +128,19 @@ public class MouseInput implements MouseListener {
 		else if (game.state == Game.STATE.Q4) {
 			if (mx >= 100 && mx <= 900) {
 				if (my >= 250 && my <= 350) {
-					game.state = Game.STATE.CORRECT;
-					correct.setPrevious(4);
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(1);
+					}
+					else
+						game.state = Game.STATE.WIN;
+					if(menu.soundClick)
+						game.PA.Blip();
 				} else if (my >= 550 && my <= 650) {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= 400 && my <= 500) {
 					game.state = Game.STATE.LOSE;
-				} else if (my >= 700 && my <= 500) {
+				} else if (my >= 700 && my <= 800) {
 					game.state = Game.STATE.LOSE;
 				}
 			}
@@ -121,13 +149,20 @@ public class MouseInput implements MouseListener {
 		else if (game.state == Game.STATE.Q5) {
 			if (mx >= 100 && mx <= 900) {
 				if (my >= 250 && my <= 350) {
-					game.state = Game.STATE.WIN;
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(5);
+					}
+					else
+						game.state = Game.STATE.WIN;
+					if(menu.soundClick)
+						game.PA.Blip();
 				} else if (my >= 550 && my <= 650) {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= 400 && my <= 500) {
 					game.state = Game.STATE.WIN;
 					correct.setPrevious(50);
-				} else if (my >= 700 && my <= 500) {
+				} else if (my >= 700 && my <= 800) {
 					game.state = Game.STATE.LOSE;
 				}
 			}

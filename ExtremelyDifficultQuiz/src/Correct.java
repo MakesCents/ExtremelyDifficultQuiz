@@ -58,18 +58,12 @@ public class Correct {
 	public void tick(){
 		counter++;
 		if (counter == 300){
-			if (previous == 1){				//The mouselistener should pass the number of the last question so the correct class knows which class to change to
-				Game.state = Game.STATE.Q2;
-				q2.start();
-			}else if (previous == 2){
-				Game.state = Game.STATE.Q3;
-				q3.start();
-			}else if (previous == 3){
-				Game.state = Game.STATE.Q4;
-			}else if (previous == 4){
-				game.state = Game.STATE.Q5;
+			if(!game.stack.isEmpty()){
+				Game.state = Game.STATE.valueOf("Q" + game.stack.pop());
+				counter = 0;
 			}
-			counter = 0;
+			else
+				Game.state = Game.STATE.MENU;
 		}
 		
 	}

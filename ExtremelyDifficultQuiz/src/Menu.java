@@ -68,6 +68,7 @@ public class Menu {
 		if (soundClick == true) {
 			g.setColor(new Color(0, 128, 13));
 			g2d.draw(soundBtn);
+			
 		} else {
 			g.setColor(Color.red);
 			g2d.draw(soundBtn);
@@ -92,6 +93,11 @@ public class Menu {
 
 	public void setSound() {
 		soundClick = !soundClick;
+		if(soundClick){
+			game.PA.Resume();
+		}else{
+			game.PA.Pause();
+		}
 	}
 
 }
