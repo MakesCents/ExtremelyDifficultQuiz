@@ -99,5 +99,8 @@ public class Menu {
 			game.PA.Pause();
 		}
 	}
+	public boolean getSound(){
+		return soundClick;
+	}
 
 }
