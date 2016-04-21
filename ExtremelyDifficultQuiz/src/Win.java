@@ -27,7 +27,6 @@ public class Win {
 		count++;
 		if (count == 240){
 			count = 0;
-			game.stack.removeAllElements();
 			game.resetStack();
 			game.state = Game.STATE.MENU;
 		}

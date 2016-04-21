@@ -39,7 +39,7 @@ public class Game extends Canvas implements Runnable {
 
 	private Timer timer;
 	public static PlayAudio PA = new PlayAudio();
-	public Stack<Integer> stack;
+	public Stack<Question> stack;
 
 
 
@@ -80,9 +80,10 @@ public class Game extends Canvas implements Runnable {
 		frame.setLocationRelativeTo(null);
 		start();
 	}
+	
 	public void resetStack(){
 		ArrayList<Integer> questionList = new ArrayList<Integer>();
-		stack = new Stack<Integer>();
+		stack = new Stack<Question>();
 		Random r = new Random();
 		for(int x = 1; x <= 5; x++){
 			questionList.add(x);
@@ -91,9 +92,30 @@ public class Game extends Canvas implements Runnable {
 		{
 			int num = r.nextInt(5) + 1;
 			if(questionList.contains(num)){
-				stack.push(num);
-				questionList.remove(questionList.indexOf(num));
-				System.out.println(num);
+				if(num == 1) {
+					stack.push(q1);
+					questionList.remove(questionList.indexOf(1));
+					System.out.println(1);
+				}
+				else if(num == 2){
+					stack.push(q2);
+					questionList.remove(questionList.indexOf(2));
+					System.out.println(2);
+				}else if(num == 3){
+					stack.push(q3);
+					questionList.remove(questionList.indexOf(3));
+					System.out.println(3);
+				}
+				else if(num == 4){
+					stack.push(q4);
+					questionList.remove(questionList.indexOf(4));
+					System.out.println(4);
+				}
+				else if(num == 5){
+					stack.push(q5);
+					questionList.remove(questionList.indexOf(5));
+					System.out.println(5);
+				}
 			}
 		}
 
