@@ -2,7 +2,7 @@ package src;
 
 import java.awt.*;
 
-public class Q3 {
+public class Q3 extends Question{
 
 	private Timer timer;
 	private Game game;
@@ -45,7 +45,10 @@ public class Q3 {
 	}
 	
 	public void start(){
-		timer.setTime(9);
-		timer.start();
+		timer.restart();
+	}
+	
+	public Game.STATE getState(){
+		return Game.STATE.Q3;
 	}
 }

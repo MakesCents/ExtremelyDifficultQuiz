@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-public class Q1 {
+public class Q1 extends Question{
 
 	private Game game;
 	private Timer timer;
@@ -48,7 +48,10 @@ public class Q1 {
 	}
 
 	public void start(){
-		timer.setTime(9);
-		timer.start();
+		timer.restart();
+	}
+	
+	public Game.STATE getState(){
+		return Game.STATE.Q1;
 	}
 }

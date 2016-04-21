@@ -37,17 +37,16 @@ public class MouseInput implements MouseListener {
 
 		int mx = e.getX();
 		int my = e.getY();
-		System.out.println("mx:" + mx+" my:"+my);
+
 		if (game.state == Game.STATE.MENU) {
 			if (mx >= (Game.WIDTH - 200) / 2 && mx <= (Game.WIDTH - 200) / 2 + 200) {
 				if (my >= 400 && my <= 500) {
 					// Click on Play Button
+					System.out.println("CLICK");
 					menu.setClick();
-					game.state = Game.STATE.valueOf("Q" + game.stack.pop());
-					System.out.println(game.getState());
-					timer.setTime(9);
-					timer.start();
-
+					Question question = game.stack.pop();
+					game.state = question.getState();
+					question.start();
 				}
 			}
 			if (mx >= (Game.WIDTH - 225) && mx <= (Game.WIDTH - 100)) {
