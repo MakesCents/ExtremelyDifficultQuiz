@@ -45,8 +45,8 @@ public class MouseInput implements MouseListener {
 					menu.setClick();
 					game.state = Game.STATE.valueOf("Q" + game.stack.pop());
 					System.out.println(game.getState());
-//					timer.setTime(9);
-//					timer.start();
+					timer.setTime(9);
+					timer.start();
 
 				}
 			}
