@@ -40,6 +40,7 @@ public class Game extends Canvas implements Runnable {
 	private Timer timer;
 	public static PlayAudio PA = new PlayAudio();
 	public Stack<Question> stack;
+	public int score;
 
 
 
@@ -63,6 +64,7 @@ public class Game extends Canvas implements Runnable {
 		correct = new Correct(this, q2, q3);
 		lose = new Lose(this);
 		win = new Win(this);
+		score = 0;
 		
 		resetStack();
 
@@ -82,6 +84,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void resetStack(){
+		score = 0;
 		ArrayList<Integer> questionList = new ArrayList<Integer>();
 		stack = new Stack<Question>();
 		Random r = new Random();
