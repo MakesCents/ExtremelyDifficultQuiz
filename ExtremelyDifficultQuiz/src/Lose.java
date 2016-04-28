@@ -30,13 +30,16 @@ public class Lose {
 		g.setFont(f);
 		g.setColor(Color.gray);
 		g.drawString("You lost :('", 100, 100);
+		g.drawString("Score: " + game.score, 100, 300);
+		if(game.score == 0){
+			g.drawString("Really? Not even 1 question... wow", 100, 500);
+		}
 	}
 
 	public void tick(){
 		counter++;
 		if (counter == 180){
 			counter = 0;
-			game.stack.removeAllElements();
 			game.resetStack();
 			game.state = Game.STATE.MENU;
 		}

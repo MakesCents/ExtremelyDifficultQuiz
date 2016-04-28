@@ -21,13 +21,13 @@ public class Win {
 		g.setColor(Color.white);
 		g.setFont(fnt);
 		g.drawString("You WINNNNN!!!!", 100, 100);
+		g.drawString("Score: " + game.score, 100, 300);
 	}
 
 	public void tick(){
 		count++;
 		if (count == 240){
 			count = 0;
-			game.stack.removeAllElements();
 			game.resetStack();
 			game.state = Game.STATE.MENU;
 		}

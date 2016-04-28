@@ -67,6 +67,7 @@ public class MouseInput implements MouseListener {
 					System.out.println("Right!!");
 					if(!game.stack.isEmpty()){
 						game.state = Game.STATE.CORRECT;
+						game.score ++;
 						correct.setPrevious(1);
 					}
 					else
@@ -90,6 +91,7 @@ public class MouseInput implements MouseListener {
 					System.out.println("Right!!");
 					if(!game.stack.isEmpty()){
 						game.state = Game.STATE.CORRECT;
+						game.score ++;
 						correct.setPrevious(2);
 					}
 					else
@@ -111,6 +113,7 @@ public class MouseInput implements MouseListener {
 				} else if (my >= 400 && my <= 500) {
 					if(!game.stack.isEmpty()){
 						game.state = Game.STATE.CORRECT;
+						game.score ++;
 						correct.setPrevious(3);
 					}
 					else
@@ -128,6 +131,7 @@ public class MouseInput implements MouseListener {
 				if (my >= 250 && my <= 350) {
 					if(!game.stack.isEmpty()){
 						game.state = Game.STATE.CORRECT;
+						game.score ++;
 						correct.setPrevious(1);
 					}
 					else
@@ -146,9 +150,10 @@ public class MouseInput implements MouseListener {
 
 		else if (game.state == Game.STATE.Q5) {
 			if (mx >= 100 && mx <= 900) {
-				if (my >= 250 && my <= 350) {
+				if (my >= 400 && my <= 500){
 					if(!game.stack.isEmpty()){
 						game.state = Game.STATE.CORRECT;
+						game.score ++;
 						correct.setPrevious(5);
 					}
 					else
@@ -157,8 +162,8 @@ public class MouseInput implements MouseListener {
 						game.PA.Blip();
 				} else if (my >= 550 && my <= 650) {
 					game.state = Game.STATE.LOSE;
-				} else if (my >= 400 && my <= 500) {
-					game.state = Game.STATE.WIN;
+				} else if (my >= 250 && my <= 350){
+					game.state = Game.STATE.LOSE;
 					correct.setPrevious(50);
 				} else if (my >= 700 && my <= 800) {
 					game.state = Game.STATE.LOSE;
