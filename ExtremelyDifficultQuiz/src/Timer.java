@@ -31,10 +31,10 @@ public class Timer {
 		int ones = time%10;
 
 		if (tens > 0 && running){
-			g.drawImage(images[tens], 12, 17, game);
-			g.drawImage(images[ones], 30, 17, game);
+			g.drawImage(images[tens], (int)(Game.widthRatio*12), (int)(Game.heightRatio*17),(int)(Game.widthRatio*40),(int)(Game.heightRatio*40), game);
+			g.drawImage(images[ones],(int)(Game.widthRatio*30), (int)(Game.heightRatio*17),(int)(Game.widthRatio*40),(int)(Game.heightRatio*40), game);
 		}else if (running){
-			g.drawImage(images[ones], 20, 17, game);
+			g.drawImage(images[ones], (int)(Game.widthRatio*20), (int)(Game.heightRatio*17),(int)(Game.widthRatio*40),(int)(Game.heightRatio*40), game);
 		}
 	}
 
@@ -59,10 +59,7 @@ public class Timer {
 	public void setTime(int time){
 		this.time = time;
 	}
-	public void restart(){
-		setTime(10);
-		start();
-	}
+
 	public int getTime(){
 		return time;
 	}

@@ -13,8 +13,8 @@ public class Menu {
 	private String start = new String("Start");
 	private String sound = new String("Sound On");
 
-	public Rectangle startBtn = new Rectangle((Game.WIDTH - 200) / 2, 400, 200, 100);
-	public Rectangle soundBtn = new Rectangle(Game.WIDTH - 225, 825, 100, 50);
+	public Rectangle startBtn = new Rectangle(((int)(Game.widthRatio*(Game.WIDTH - 200) / 2)), (int)(Game.heightRatio*400), (int)(Game.widthRatio*200), (int)(Game.heightRatio*100));
+	public Rectangle soundBtn = new Rectangle((int)Game.WIDTH - 225, 825, 100, 50);
 	private BufferedImage title;
 	private BufferedImage back;
 	private BufferedImage logo;
@@ -26,7 +26,6 @@ public class Menu {
 	private int counter;
 
 	public Menu(Game game) {
-
 		this.game = game;
 
 		BufferedImageLoader loader = new BufferedImageLoader();
@@ -44,20 +43,28 @@ public class Menu {
 
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		Font fnt0 = new Font("arial", Font.BOLD, 50);
-		Font fnt1 = new Font("arial", Font.ROMAN_BASELINE, 70);
-		Font fnt2 = new Font("arial", Font.PLAIN, 20);
+		Font fnt0 = new Font("arial", Font.BOLD, (int)(50*Math.min(Game.widthRatio, Game.heightRatio)));
+		Font fnt1 = new Font("arial", Font.ROMAN_BASELINE, (int)(Math.min(Game.widthRatio, Game.heightRatio)*70));
+		Font fnt2 = new Font("arial", Font.PLAIN, (int)(Game.widthRatio*20));
 		g.setFont(fnt0);
 		g.setColor(Color.yellow);
-		g.drawImage(back, 0, 0, Game.WIDTH + 20, Game.HEIGHT + 20, game);
-		g.drawImage(finger, 420 - counter, 400, 100, 100, game);
+		g.drawImage(back, 0, 0, (int)(Game.widthRatio *Game.WIDTH) + 20, (int)(Game.heightRatio *Game.HEIGHT) + 20, game);
+		g.drawImage(finger, (int)(Game.widthRatio * (420 - counter)), (int)(Game.heightRatio* 400), (int)(100 * Game.widthRatio), (int)(100 * Game.heightRatio), game);
 		g.setColor(Color.blue);
 		g.setFont(fnt1);
-		g.drawString(start, startBtn.x + 25, startBtn.y + 70);
+		
+		g.drawString(start, ((int)(Game.widthRatio*(Game.WIDTH - (175)) / 2)), (int)(Game.heightRatio*400+(Game.heightRatio*75)));
+		
 		g.setFont(fnt2);
-		g.drawImage(title, 105, 200, 1000, 800, game);
-		g.drawString(sound, (soundBtn.x + sound.length() / 2 + 3), soundBtn.y + 35);
-		g.drawImage(logo, 1100, 800, 100, 100, game);
+		g.drawImage(title, (int)(Game.widthRatio*105), (int)(Game.heightRatio*200), (int)(Game.widthRatio*1000), (int)(Game.heightRatio*800), game);
+		
+		g.drawString(sound, (int)(Game.widthRatio*(Game.WIDTH - 225)), (int)(Game.heightRatio*860));
+		
+		g.drawImage(logo, (int)(Game.widthRatio*1100), (int)(Game.heightRatio*800), (int)(Game.widthRatio*100), (int)(Game.heightRatio*100), game);
+		startBtn.setSize(((int)(Game.widthRatio*200)), (int)(Game.heightRatio*100));
+		startBtn.setLocation(((int)(Game.widthRatio*(Game.WIDTH - 200) / 2)), (int)(Game.heightRatio*400));
+		soundBtn.setLocation((int)(Game.widthRatio*(Game.WIDTH - 225)), (int)(Game.heightRatio*825));
+		soundBtn.setSize((int)(100*Game.widthRatio), (int)(50*Game.heightRatio));
 		if (startClick == true) {
 			g.setColor(Color.white);
 			g2d.draw(startBtn);
@@ -94,9 +101,9 @@ public class Menu {
 	public void setSound() {
 		soundClick = !soundClick;
 		if(soundClick){
-			game.PA.Resume();
+//			game.PA.Resume();
 		}else{
-			game.PA.Pause();
+//			game.PA.Pause();
 		}
 	}
 	public boolean getSound(){

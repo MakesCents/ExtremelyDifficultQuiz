@@ -25,11 +25,11 @@ public class Lose {
 
 	public void render(Graphics g){
 		g.setColor(Color.black);
-		g.fillRect(0, 0, game.WIDTH + 12, game.HEIGHT + 12);
-		Font f = new Font("arial black", 1, 50);
+		g.fillRect(0, 0, (int)(Game.widthRatio*(game.WIDTH + 12)), (int)(Game.heightRatio*(game.HEIGHT + 12)));
+		Font f = new Font("arial black", 1, (int)(50*Math.min(Game.widthRatio, Game.heightRatio)));
 		g.setFont(f);
 		g.setColor(Color.gray);
-		g.drawString("You lost :('", 100, 100);
+		g.drawString("You lost :('", (int)(Game.widthRatio*100), (int)(Game.heightRatio*100));
 	}
 
 	public void tick(){

@@ -1,12 +1,10 @@
 /*
- * Author: Matthew Kinzler
  * Date: 2/26/2016
  *
  * Adding graphics
  */
 
 package src;
-
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -20,7 +18,8 @@ import java.util.Stack;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	public static final int WIDTH = 1200, HEIGHT = 900;
+	public static final double WIDTH = 1200, HEIGHT = 900;
+	public static double widthRatio = 1, heightRatio = 1;
 	public static final String TITLE = "Extremely Difficult Quiz";
 
 	private boolean running = false;
@@ -38,17 +37,17 @@ public class Game extends Canvas implements Runnable {
 	private Win win;
 
 	private Timer timer;
-	public static PlayAudio PA = new PlayAudio();
-	public Stack<Question> stack;
+//	public static PlayAudio PA = new PlayAudio();
+	public Stack<Integer> stack;
 
 
 
 	public Game(){
 		menu = new Menu(this);
-		PA.Loop("res/bg.mp3");
+//		PA.Loop("res/bg.mp3");
 
 		handler=new Handler(this);
-		Dimension size = new Dimension(WIDTH, HEIGHT);
+		Dimension size = new Dimension((int) WIDTH, (int)HEIGHT);
 		setPreferredSize(size);
 		setMaximumSize(size);
 		setMinimumSize(size);
@@ -69,7 +68,7 @@ public class Game extends Canvas implements Runnable {
 
 		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer));
 
-
+		this.addComponentListener(new ComponentInput(this));
 
 		JFrame frame = new JFrame(TITLE);
 		frame.add(this);
@@ -78,12 +77,12 @@ public class Game extends Canvas implements Runnable {
 		frame.setVisible(true);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
+		
 		start();
 	}
-	
 	public void resetStack(){
 		ArrayList<Integer> questionList = new ArrayList<Integer>();
-		stack = new Stack<Question>();
+		stack = new Stack<Integer>();
 		Random r = new Random();
 		for(int x = 1; x <= 5; x++){
 			questionList.add(x);
@@ -92,30 +91,9 @@ public class Game extends Canvas implements Runnable {
 		{
 			int num = r.nextInt(5) + 1;
 			if(questionList.contains(num)){
-				if(num == 1) {
-					stack.push(q1);
-					questionList.remove(questionList.indexOf(1));
-					System.out.println(1);
-				}
-				else if(num == 2){
-					stack.push(q2);
-					questionList.remove(questionList.indexOf(2));
-					System.out.println(2);
-				}else if(num == 3){
-					stack.push(q3);
-					questionList.remove(questionList.indexOf(3));
-					System.out.println(3);
-				}
-				else if(num == 4){
-					stack.push(q4);
-					questionList.remove(questionList.indexOf(4));
-					System.out.println(4);
-				}
-				else if(num == 5){
-					stack.push(q5);
-					questionList.remove(questionList.indexOf(5));
-					System.out.println(5);
-				}
+				stack.push(num);
+				questionList.remove(questionList.indexOf(num));
+				System.out.println(num);
 			}
 		}
 
@@ -256,10 +234,15 @@ public class Game extends Canvas implements Runnable {
 		g.dispose();
 		bs.show();
 	}
-
+	public void setRatio(int width, int height){
+		widthRatio  = width/WIDTH;
+		heightRatio = height/HEIGHT;
+	}
+	
 	public static void main(String[] args){
 		Game game = new Game();
 		game.start();
 
 	}
+
 }

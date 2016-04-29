@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-public class Q4 extends Question{
+public class Q4 {
 
 	//This is the mega-man blue laser question
 
@@ -18,26 +18,27 @@ public class Q4 extends Question{
 
 	public void render(Graphics g){
 		g.setColor(Color.black);
-		g.fillRect(0, 0, Game.WIDTH + 20, Game.HEIGHT + 20);
+		g.fillRect(0, 0, (int)(Game.widthRatio *Game.WIDTH) + 20, (int)(Game.heightRatio *Game.HEIGHT) + 20);
 		g.setColor(Color.white);
-		g.fillOval(10, 10, 50, 50);
+		g.fillOval((int)(Game.widthRatio*10), (int)(Game.heightRatio *10), (int)(Game.widthRatio *50), (int)(Game.heightRatio *50));
 		g.setColor(Color.blue);
-		Font fnt = new Font("arial black", 1, 40);
+		Font fnt = new Font("arial black", 1, (int)(40*Math.min(Game.widthRatio, Game.heightRatio)));
 		g.setFont(fnt);
 		//g.drawString("1", 20, 50);
-		g.fillRect(100, 100, 1000, 100);
+		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*100), (int)(Game.widthRatio*1000), (int)(Game.heightRatio*100));
 		g.setColor(Color.white);
-		g.drawString("What is the color of MegaMan's Laser?", 150, 150);
+		g.drawString("What is the color of MegaMan's Laser?", (int)(Game.widthRatio*150), (int)(Game.heightRatio*150));
 		g.setColor(Color.blue);
-		g.fillRect(100, 250, 800, 100);
-		g.fillRect(100, 400, 800, 100);
-		g.fillRect(100, 550, 800, 100);
-		g.fillRect(100, 700, 800, 100);
+		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*250), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
+		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*400), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
+		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*550), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
+		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*700), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
 		g.setColor(Color.white);
-		g.drawString("Blue", 120, 290);
-		g.drawString("Green", 120, 440);
-		g.drawString("Red", 120, 590);
-		g.drawString("Fucshia", 120, 740);
+		g.drawString("Blue", (int)(Game.widthRatio*120), (int)(Game.heightRatio*290));
+		g.drawString("Green", (int)(Game.widthRatio*120), (int)(Game.heightRatio*440));
+		g.drawString("Red", (int)(Game.widthRatio*120), (int)(Game.heightRatio*590));
+		g.drawString("Fucshia", (int)(Game.widthRatio*120), (int)(Game.heightRatio*740));
+
 		timer.render(g);
 	}
 
@@ -49,10 +50,7 @@ public class Q4 extends Question{
 	}
 
 	public void start(){
-		timer.restart();
-	}
-	
-	public Game.STATE getState(){
-		return Game.STATE.Q4;
+		timer.setTime(9);
+		timer.start();
 	}
 }

@@ -35,23 +35,23 @@ public class Correct {
 	
 	public void render(Graphics g){
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, Game.WIDTH + 20, Game.HEIGHT + 20);
-		Font f = new Font("arial black", 1, 50);
+		g.fillRect(0, 0, (int)(Game.widthRatio *Game.WIDTH) + 20, (int)(Game.heightRatio *Game.HEIGHT) + 20);
+		Font f = new Font("arial black", 1, (int)(50*Math.min(Game.widthRatio, Game.heightRatio)));
 		g.setFont(f);
 		g.setColor(Color.blue);
-		g.drawString("CORRECT!!!!", 100, 100);
-		g.drawString("Want a cookie?", 100, 600);
+		g.drawString("CORRECT!!!!", (int)(Game.widthRatio*100), (int)(Game.heightRatio*100));
+		g.drawString("Want a cookie?", (int)(Game.widthRatio*100), (int)(Game.heightRatio*600));
 		//Every second there is byte taken out of the cookie
 		//When the cookie is gone go to the next question
-		g.drawImage(park, 100, 150, 400, 400, game);
+		g.drawImage(park, (int)(Game.widthRatio*100), (int)(Game.heightRatio*150), (int)(Game.widthRatio*400), (int)(Game.heightRatio*400), game);
 		if (counter < 60){
-			g.drawImage(cookie1, 100, 700, 200, 200, game);
+			g.drawImage(cookie1, (int)(Game.widthRatio*100), (int)(Game.heightRatio*700), (int)(Game.widthRatio*200), (int)(Game.heightRatio*200), game);
 		}else if (counter < 120){
-			g.drawImage(cookie2, 100, 700, 200, 200, game);
+			g.drawImage(cookie2, (int)(Game.widthRatio*100), (int)(Game.heightRatio*700), (int)(Game.widthRatio*200), (int)(Game.heightRatio*200), game);
 		}else if (counter < 180){
-			g.drawImage(cookie3, 100, 700, 200, 200, game);
+			g.drawImage(cookie3, (int)(Game.widthRatio*100), (int)(Game.heightRatio*700), (int)(Game.widthRatio*200), (int)(Game.heightRatio*200), game);
 		}else if (counter  < 240){
-			g.drawImage(cookie4, 100, 700, 200, 200, game);
+			g.drawImage(cookie4, (int)(Game.widthRatio*100), (int)(Game.heightRatio*700), (int)(Game.widthRatio*200), (int)(Game.heightRatio*200), game);
 		}
 	}
 	
@@ -59,10 +59,7 @@ public class Correct {
 		counter++;
 		if (counter == 300){
 			if(!game.stack.isEmpty()){
-				Question question = game.stack.pop();
-				System.out.println(question.toString());
-				game.state = question.getState();
-				question.start();
+				Game.state = Game.STATE.valueOf("Q" + game.stack.pop());
 				counter = 0;
 			}
 			else
