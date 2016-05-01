@@ -26,10 +26,10 @@ public class Q5 {
 		g.setColor(Color.blue);
 		Font fnt = new Font("arial black", 1, (int)(40*Math.min(Game.widthRatio, Game.heightRatio)));
 		g.setFont(fnt);
-		//g.drawString("1", 20, 50);
 		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*100), (int)(Game.widthRatio*1000), (int)(Game.heightRatio*100));
 		g.setColor(Color.white);
-		g.drawString("Where does Spyro want to go on vacation at the beginning of Spyro 2?", (int)(Game.widthRatio*150), (int)(Game.heightRatio*150));
+		g.drawString("Where does Spyro want to go on vacation", (int)(Game.widthRatio*150), (int)(Game.heightRatio*150));
+		g.drawString("at in the beginning of Spyro 2?", (int)(Game.widthRatio*150), (int)(Game.heightRatio*190));
 		g.setColor(Color.blue);
 		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*250), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
 		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*400), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
