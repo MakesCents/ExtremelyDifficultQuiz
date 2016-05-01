@@ -59,6 +59,10 @@ public class Timer {
 	public void setTime(int time){
 		this.time = time;
 	}
+	public void restart(){
+		setTime(100);
+		start();
+	}
 
 	public int getTime(){
 		return time;

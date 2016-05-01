@@ -5,6 +5,7 @@
  */
 
 package src;
+
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -13,7 +14,6 @@ import javax.swing.JFrame;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
-
 
 public class Game extends Canvas implements Runnable {
 
@@ -38,16 +38,14 @@ public class Game extends Canvas implements Runnable {
 
 	private Timer timer;
 	public static PlayAudio PA = new PlayAudio();
-	public Stack<Integer> stack;
+	public Stack<Question> stack;
 
-
-
-	public Game(){
+	public Game() {
 		menu = new Menu(this);
 		PA.Loop("res/bg.mp3");
 
-		handler=new Handler(this);
-		Dimension size = new Dimension((int) WIDTH, (int)HEIGHT);
+		handler = new Handler(this);
+		Dimension size = new Dimension((int) WIDTH, (int) HEIGHT);
 		setPreferredSize(size);
 		setMaximumSize(size);
 		setMinimumSize(size);
@@ -62,9 +60,8 @@ public class Game extends Canvas implements Runnable {
 		correct = new Correct(this, q2, q3);
 		lose = new Lose(this);
 		win = new Win(this);
-		
-		resetStack();
 
+		resetStack();
 
 		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer));
 
@@ -77,50 +74,58 @@ public class Game extends Canvas implements Runnable {
 		frame.setVisible(true);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
-		
+
 		start();
 	}
-	public void resetStack(){
+
+	public void resetStack() {
 		ArrayList<Integer> questionList = new ArrayList<Integer>();
-		stack = new Stack<Integer>();
+		stack = new Stack<Question>();
 		Random r = new Random();
-		for(int x = 1; x <= 5; x++){
+		for (int x = 1; x <= 5; x++) {
 			questionList.add(x);
 		}
-		while(stack.size()<=4)
-		{
+		while (stack.size() <= 4) {
 			int num = r.nextInt(5) + 1;
-			if(questionList.contains(num)){
-				stack.push(num);
-				questionList.remove(questionList.indexOf(num));
-				System.out.println(num);
+			if (questionList.contains(num)) {
+				if (num == 1) {
+					stack.push(q1);
+					questionList.remove(questionList.indexOf(1));
+					System.out.println(1);
+				} else if (num == 2) {
+					stack.push(q2);
+					questionList.remove(questionList.indexOf(2));
+					System.out.println(2);
+				} else if (num == 3) {
+					stack.push(q3);
+					questionList.remove(questionList.indexOf(3));
+					System.out.println(3);
+				} else if (num == 4) {
+					stack.push(q4);
+					questionList.remove(questionList.indexOf(4));
+					System.out.println(4);
+				} else if (num == 5) {
+					stack.push(q5);
+					questionList.remove(questionList.indexOf(5));
+					System.out.println(5);
+				}
 			}
 		}
 
 	}
 
-	public enum STATE{
-		MENU,
-		GAME,
-		Q1,
-		Q2,
-		Q3,
-		Q4,
-		Q5,
-		CORRECT,
-		LOSE,
-		WIN
+	public enum STATE {
+		MENU, GAME, Q1, Q2, Q3, Q4, Q5, CORRECT, LOSE, WIN
 	};
 
 	public static STATE state = STATE.MENU;
 
-	public void init(){
-
-
+	public void init() {
 
 	}
-	private synchronized void start(){
-		if(running)
+
+	private synchronized void start() {
+		if (running)
 			return;
 
 		running = true;
@@ -128,8 +133,8 @@ public class Game extends Canvas implements Runnable {
 		thread.start();
 	}
 
-	private synchronized void stop(){
-		if(!running)
+	private synchronized void stop() {
+		if (!running)
 			return;
 
 		running = false;
@@ -142,7 +147,7 @@ public class Game extends Canvas implements Runnable {
 		System.exit(1);
 	}
 
-	public void run(){
+	public void run() {
 		init();
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 60.0;
@@ -152,11 +157,11 @@ public class Game extends Canvas implements Runnable {
 		int frames = 0;
 		long timer = System.currentTimeMillis();
 
-		while (running){
+		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-			if(delta >= 1){
+			if (delta >= 1) {
 				tick();
 				updates++;
 				delta--;
@@ -164,7 +169,7 @@ public class Game extends Canvas implements Runnable {
 			render();
 			frames++;
 
-			if(System.currentTimeMillis() - timer > 1000){
+			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				System.out.println(updates + " Ticks, Fps " + frames);
 				updates = 0;
@@ -174,72 +179,73 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 
-	private void tick(){
-		if(state == STATE.MENU){
+	private void tick() {
+		if (state == STATE.MENU) {
 			menu.tick();
-		}else if (state == STATE.CORRECT){
+		} else if (state == STATE.CORRECT) {
 			correct.tick();
-		}else if (state == STATE.LOSE){
+		} else if (state == STATE.LOSE) {
 			lose.tick();
-		}else if (state == STATE.Q1){
+		} else if (state == STATE.Q1) {
 			q1.tick();
-		}else if (state == STATE.Q2){
+		} else if (state == STATE.Q2) {
 			q2.tick();
-		}else if (state == STATE.Q3){
+		} else if (state == STATE.Q3) {
 			q3.tick();
-		}else if (state == STATE.WIN){
+		} else if (state == STATE.WIN) {
 			win.tick();
-		}else if (state == STATE.Q4){
+		} else if (state == STATE.Q4) {
 			q4.tick();
-		}else if (state == STATE.Q5){
+		} else if (state == STATE.Q5) {
 			q5.tick();
 		}
 
 	}
 
-	public STATE getState(){
+	public STATE getState() {
 		return state;
 	}
 
-	private void render(){
+	private void render() {
 
 		BufferStrategy bs = this.getBufferStrategy();
 
-		if(bs == null){
+		if (bs == null) {
 			createBufferStrategy(3);
 			return;
 		}
 
 		Graphics g = bs.getDrawGraphics();
-		if(state==STATE.MENU){
+		if (state == STATE.MENU) {
 			menu.render(g);
-		}else if (state == STATE.Q1){
+		} else if (state == STATE.Q1) {
 			q1.render(g);
-		}else if (state == STATE.CORRECT){
+		} else if (state == STATE.CORRECT) {
 			correct.render(g);
-		}else if (state == STATE.Q2){
+		} else if (state == STATE.Q2) {
 			q2.render(g);
-		}else if (state == STATE.Q3){
+		} else if (state == STATE.Q3) {
 			q3.render(g);
-		}else if (state == STATE.LOSE){
+		} else if (state == STATE.LOSE) {
 			lose.render(g);
-		}else if (state == STATE.WIN){
+		} else if (state == STATE.WIN) {
 			win.render(g);
-		}else if (state == STATE.Q4){
+		} else if (state == STATE.Q4) {
 			q4.render(g);
-		}else if (state == STATE.Q5){
+		} else if (state == STATE.Q5) {
 			q5.render(g);
 		}
 
 		g.dispose();
 		bs.show();
 	}
-	public void setRatio(int width, int height){
-		widthRatio  = width/WIDTH;
-		heightRatio = height/HEIGHT;
+
+	public void setRatio(int width, int height) {
+		widthRatio = width / WIDTH;
+		heightRatio = height / HEIGHT;
 	}
-	
-	public static void main(String[] args){
+
+	public static void main(String[] args) {
 		Game game = new Game();
 		game.start();
 

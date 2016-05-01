@@ -43,10 +43,9 @@ public class MouseInput implements MouseListener {
 				if (my >= (400*Game.heightRatio) && my <= (Game.heightRatio*500)) {
 					// Click on Play Button
 					menu.setClick();
-					game.state = Game.STATE.valueOf("Q" + game.stack.pop());
-					System.out.println(game.getState());
-					timer.setTime(9);
-					timer.start();
+					Question question = game.stack.pop();
+					game.state = question.getState();
+					question.start();
 					
 				}
 			}

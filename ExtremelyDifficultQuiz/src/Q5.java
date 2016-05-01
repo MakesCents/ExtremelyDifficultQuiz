@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-public class Q5 {
+public class Q5 extends Question{
 
 
 	//This is the spyro question
@@ -54,5 +54,9 @@ public class Q5 {
 	public void start(){
 		timer.setTime(9);
 		timer.start();
+	}
+	
+	public Game.STATE getState(){
+		return Game.STATE.Q5;
 	}
 }

@@ -59,7 +59,10 @@ public class Correct {
 		counter++;
 		if (counter == 300){
 			if(!game.stack.isEmpty()){
-				Game.state = Game.STATE.valueOf("Q" + game.stack.pop());
+				Question question = game.stack.pop();
+				System.out.println(question.toString());
+				game.state = question.getState();
+				question.start();
 				counter = 0;
 			}
 			else
