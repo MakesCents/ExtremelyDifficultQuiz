@@ -37,14 +37,14 @@ public class Game extends Canvas implements Runnable {
 	private Win win;
 
 	private Timer timer;
-//	public static PlayAudio PA = new PlayAudio();
+	public static PlayAudio PA = new PlayAudio();
 	public Stack<Integer> stack;
 
 
 
 	public Game(){
 		menu = new Menu(this);
-//		PA.Loop("res/bg.mp3");
+		PA.Loop("res/bg.mp3");
 
 		handler=new Handler(this);
 		Dimension size = new Dimension((int) WIDTH, (int)HEIGHT);

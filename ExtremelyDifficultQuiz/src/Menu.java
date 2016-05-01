@@ -101,9 +101,9 @@ public class Menu {
 	public void setSound() {
 		soundClick = !soundClick;
 		if(soundClick){
-//			game.PA.Resume();
+			game.PA.Resume();
 		}else{
-//			game.PA.Pause();
+			game.PA.Pause();
 		}
 	}
 	public boolean getSound(){

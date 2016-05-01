@@ -72,8 +72,8 @@ public class MouseInput implements MouseListener {
 					}
 					else
 						game.state = Game.STATE.WIN;
-//					if(menu.soundClick)
-//						game.PA.Blip();
+					if(menu.soundClick)
+						game.PA.Blip();
 				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
 					game.state = Game.STATE.LOSE;
 					System.out.println("Why");
@@ -95,8 +95,8 @@ public class MouseInput implements MouseListener {
 					}
 					else
 						game.state = Game.STATE.WIN;	
-//					if(menu.soundClick)
-//						game.PA.Blip();
+					if(menu.soundClick)
+						game.PA.Blip();
 				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
 					game.state = Game.STATE.LOSE;
 				}
@@ -116,8 +116,8 @@ public class MouseInput implements MouseListener {
 					}
 					else
 						game.state = Game.STATE.WIN;
-//					if(menu.soundClick)
-//						game.PA.Blip();
+					if(menu.soundClick)
+						game.PA.Blip();
 				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
 					game.state = Game.STATE.LOSE;
 				}
@@ -133,8 +133,8 @@ public class MouseInput implements MouseListener {
 					}
 					else
 						game.state = Game.STATE.WIN;
-//					if(menu.soundClick)
-//						game.PA.Blip();
+					if(menu.soundClick)
+						game.PA.Blip();
 				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
@@ -154,8 +154,8 @@ public class MouseInput implements MouseListener {
 					}
 					else
 						game.state = Game.STATE.WIN;
-//					if(menu.soundClick)
-//						game.PA.Blip();
+					if(menu.soundClick)
+						game.PA.Blip();
 				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
 					game.state = Game.STATE.LOSE;
 				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
