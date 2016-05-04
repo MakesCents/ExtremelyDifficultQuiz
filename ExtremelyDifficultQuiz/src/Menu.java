@@ -24,8 +24,10 @@ public class Menu {
 	private Game game;
 	public boolean startClick = false, increasing = true, soundClick = true;
 	private int counter;
+	private int[] highScores;
+	private String[] highNames;
 
-	public Menu(Game game) {
+	public Menu(Game game, int[] scores, String[] names) {
 		this.game = game;
 
 		BufferedImageLoader loader = new BufferedImageLoader();
@@ -38,7 +40,9 @@ public class Menu {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		highScores = scores;
+		highNames = names;
 	}
 
 	public void render(Graphics g) {
@@ -80,6 +84,23 @@ public class Menu {
 			g.setColor(Color.red);
 			g2d.draw(soundBtn);
 		}
+		
+		g.setColor(Color.black);
+		g.fillRect((int)(1000 * Game.widthRatio), 0, (int)(200 * Game.widthRatio), (int)(220 * Game.heightRatio));
+		g.setColor(Color.white);
+		
+		
+		Font fnt3 = new Font("arial", Font.PLAIN, Math.min((int)(Game.widthRatio*20) * 2, (int)(Game.heightRatio*20) * 2));
+		
+		
+		g.setFont(fnt3);
+		for (int i = 0; i < 5; i++){
+			g.drawString("" + highScores[i], (int)(1125 * Game.widthRatio), (int)((40 * (i + 1)) * Game.heightRatio));
+		}
+		
+		for (int i = 0; i < 5; i++){
+			g.drawString("" + highNames[i] + ":", (int)(1025 * Game.widthRatio), (int)((40 * (i + 1)) * Game.heightRatio));
+		} 
 	}
 
 	public void setClick() {

@@ -23,7 +23,9 @@ public class Game extends Canvas implements Runnable {
 	public static final String TITLE = "Extremely Difficult Quiz";
 
 	private boolean running = false;
-
+	private int[] highScores;
+	private String[] highNames;
+	
 	private Thread thread;
 	private Menu menu;
 	private Handler handler;
@@ -35,13 +37,19 @@ public class Game extends Canvas implements Runnable {
 	private Correct correct;
 	private Lose lose;
 	private Win win;
+	private Score score;
 
 	private Timer timer;
 	public static PlayAudio PA = new PlayAudio();
 	public Stack<Question> stack;
 
 	public Game() {
-		menu = new Menu(this);
+		score = new Score();
+		
+		highScores = score.getScore();
+		highNames = score.getNames();
+		
+		menu = new Menu(this, highScores, highNames);
 		PA.Loop("res/bg.mp3");
 
 		handler = new Handler(this);
@@ -60,7 +68,7 @@ public class Game extends Canvas implements Runnable {
 		correct = new Correct(this, q2, q3);
 		lose = new Lose(this);
 		win = new Win(this);
-
+		
 		resetStack();
 
 		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer));
@@ -235,7 +243,7 @@ public class Game extends Canvas implements Runnable {
 		} else if (state == STATE.Q5) {
 			q5.render(g);
 		}
-
+		
 		g.dispose();
 		bs.show();
 	}
