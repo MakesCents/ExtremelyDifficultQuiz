@@ -85,6 +85,8 @@ public class Menu {
 			g2d.draw(soundBtn);
 		}
 		
+		
+		
 		g.setColor(Color.black);
 		g.fillRect((int)(1000 * Game.widthRatio), 0, (int)(200 * Game.widthRatio), (int)(220 * Game.heightRatio));
 		g.setColor(Color.white);
@@ -108,6 +110,8 @@ public class Menu {
 	}
 
 	public void tick() {
+		highScores = game.getHighScores();
+		
 		if (increasing)
 			counter++;
 		else
