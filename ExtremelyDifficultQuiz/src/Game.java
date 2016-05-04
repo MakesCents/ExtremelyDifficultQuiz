@@ -39,6 +39,14 @@ public class Game extends Canvas implements Runnable {
 	private Q3 q3;
 	private Q4 q4;
 	private Q5 q5;
+	private Q7 q7;
+	private Q8 q8;
+	private Q9 q9;
+	private Q10 q10;
+	private Q11 q11;
+	private Q12 q12;
+	private Q13 q13;
+
 	private Correct correct;
 	private Lose lose;
 	private Win win;
@@ -70,6 +78,14 @@ public class Game extends Canvas implements Runnable {
 		q3 = new Q3(this, timer);
 		q4 = new Q4(this, timer);
 		q5 = new Q5(this, timer);
+		q7 = new Q7(this, timer);
+		q8 = new Q8(this, timer);
+		q9 = new Q9(this, timer);
+		q10 = new Q10(this, timer);
+		q11 = new Q11(this, timer);
+		q12 = new Q12(this, timer);
+		q13 = new Q13(this, timer);
+
 		correct = new Correct(this, q2, q3);
 		lose = new Lose(this);
 		win = new Win(this);
@@ -95,11 +111,11 @@ public class Game extends Canvas implements Runnable {
 		ArrayList<Integer> questionList = new ArrayList<Integer>();
 		stack = new Stack<Question>();
 		Random r = new Random();
-		for (int x = 1; x <= 5; x++) {
+		for (int x = 1; x <= 13; x++) {
 			questionList.add(x);
 		}
-		while (stack.size() <= 4) {
-			int num = r.nextInt(5) + 1;
+		while (stack.size() <= 12) {
+			int num = r.nextInt(13) + 1;
 			if (questionList.contains(num)) {
 				if (num == 1) {
 					stack.push(q1);
@@ -121,6 +137,34 @@ public class Game extends Canvas implements Runnable {
 					stack.push(q5);
 					questionList.remove(questionList.indexOf(5));
 					System.out.println(5);
+				}else if (num == 7) {
+					stack.push(q7);
+					questionList.remove(questionList.indexOf(7));
+					System.out.println(7);
+				}else if (num == 8) {
+					stack.push(q8);
+					questionList.remove(questionList.indexOf(8));
+					System.out.println(8);
+				}else if (num == 9) {
+					stack.push(q9);
+					questionList.remove(questionList.indexOf(9));
+					System.out.println(9);
+				}else if (num == 10) {
+					stack.push(q10);
+					questionList.remove(questionList.indexOf(10));
+					System.out.println(10);
+				}else if (num == 11) {
+					stack.push(q11);
+					questionList.remove(questionList.indexOf(11));
+					System.out.println(11);
+				}else if (num == 12) {
+					stack.push(q12);
+					questionList.remove(questionList.indexOf(12));
+					System.out.println(12);
+				}else if (num == 13) {
+					stack.push(q13);
+					questionList.remove(questionList.indexOf(13));
+					System.out.println(13);
 				}
 			}
 		}
@@ -128,7 +172,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public enum STATE {
-		MENU, GAME, Q1, Q2, Q3, Q4, Q5, CORRECT, LOSE, WIN
+		MENU, GAME, Q1, Q2, Q3, Q4, Q5, Q7, Q8, Q9, Q10, Q11, Q12, Q13, CORRECT, LOSE, WIN
 	};
 
 	public static STATE state = STATE.MENU;
@@ -212,6 +256,20 @@ public class Game extends Canvas implements Runnable {
 			q4.tick();
 		} else if (state == STATE.Q5) {
 			q5.tick();
+		}else if (state == STATE.Q7) {
+			q7.tick();
+		}else if (state == STATE.Q8) {
+			q8.tick();
+		}else if (state == STATE.Q9) {
+			q9.tick();
+		}else if (state == STATE.Q10) {
+			q10.tick();
+		}else if (state == STATE.Q11) {
+			q11.tick();
+		}else if (state == STATE.Q12) {
+			q12.tick();
+		}else if (state == STATE.Q13) {
+			q13.tick();
 		}
 
 		
@@ -249,6 +307,20 @@ public class Game extends Canvas implements Runnable {
 			q4.render(g);
 		} else if (state == STATE.Q5) {
 			q5.render(g);
+		}else if (state == STATE.Q7) {
+			q7.render(g);
+		}else if (state == STATE.Q8) {
+			q8.render(g);
+		}else if (state == STATE.Q9) {
+			q9.render(g);
+		}else if (state == STATE.Q10) {
+			q10.render(g);
+		}else if (state == STATE.Q11) {
+			q11.render(g);
+		}else if (state == STATE.Q12) {
+			q12.render(g);
+		}else if (state == STATE.Q13) {
+			q13.render(g);
 		}
 		
 		Font fnt3 = new Font("arial", Font.PLAIN, Math.min((int)(Game.widthRatio*20) * 2, (int)(Game.heightRatio*20) * 2));
