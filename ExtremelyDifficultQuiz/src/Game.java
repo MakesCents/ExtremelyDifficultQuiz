@@ -7,10 +7,14 @@
 package src;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+
 import javax.swing.JFrame;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
@@ -25,6 +29,7 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private int[] highScores;
 	private String[] highNames;
+	private int playerScore = 0;
 	
 	private Thread thread;
 	private Menu menu;
@@ -44,7 +49,7 @@ public class Game extends Canvas implements Runnable {
 	public Stack<Question> stack;
 
 	public Game() {
-		score = new Score();
+		score = new Score(this);
 		
 		highScores = score.getScore();
 		highNames = score.getNames();
@@ -71,7 +76,7 @@ public class Game extends Canvas implements Runnable {
 		
 		resetStack();
 
-		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer));
+		this.addMouseListener(new MouseInput(menu, this, correct, q1, timer, score));
 
 		this.addComponentListener(new ComponentInput(this));
 
@@ -190,6 +195,7 @@ public class Game extends Canvas implements Runnable {
 	private void tick() {
 		if (state == STATE.MENU) {
 			menu.tick();
+			highScores = score.getScore();
 		} else if (state == STATE.CORRECT) {
 			correct.tick();
 		} else if (state == STATE.LOSE) {
@@ -208,6 +214,7 @@ public class Game extends Canvas implements Runnable {
 			q5.tick();
 		}
 
+		
 	}
 
 	public STATE getState() {
@@ -244,6 +251,12 @@ public class Game extends Canvas implements Runnable {
 			q5.render(g);
 		}
 		
+		Font fnt3 = new Font("arial", Font.PLAIN, Math.min((int)(Game.widthRatio*20) * 2, (int)(Game.heightRatio*20) * 2));
+		g.setFont(fnt3);
+		g.setColor(Color.white);
+		g.drawString("" + playerScore, (int)(590 * Game.widthRatio), (int)(50 * Game.heightRatio));
+		
+		
 		g.dispose();
 		bs.show();
 	}
@@ -251,6 +264,22 @@ public class Game extends Canvas implements Runnable {
 	public void setRatio(int width, int height) {
 		widthRatio = width / WIDTH;
 		heightRatio = height / HEIGHT;
+	}
+	
+	public void incrementScore(){
+		playerScore++;
+	}
+	
+	public void resetScore(){
+		playerScore = 0;
+	}
+	
+	public int getPlayerScore(){
+		return playerScore;
+	}
+	
+	public int[] getHighScores(){
+		return highScores;
 	}
 
 	public static void main(String[] args) {

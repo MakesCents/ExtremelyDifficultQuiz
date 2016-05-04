@@ -10,13 +10,15 @@ public class MouseInput implements MouseListener {
 	private Correct correct;
 	private Q1 q1;
 	private Timer timer;
+	private Score score;
 
-	public MouseInput(Menu m, Game game, Correct correct, Q1 q1, Timer timer) {
+	public MouseInput(Menu m, Game game, Correct correct, Q1 q1, Timer timer, Score score) {
 		menu = m;
 		this.game = game;
 		this.correct = correct;
 		this.q1 = q1;
 		this.timer = timer;
+		this.score = score;
 	}
 
 	@Override
@@ -61,21 +63,31 @@ public class MouseInput implements MouseListener {
 				System.out.println("mx: "+mx + " my: "+ my);
 				if (my >= Game.heightRatio*250 && my <= Game.heightRatio*350) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
-					System.out.println("Right!!");
+					
 					if(!game.stack.isEmpty()){
 						game.state = Game.STATE.CORRECT;
 						correct.setPrevious(1);
+						game.incrementScore();
 					}
-					else
+					else{
 						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
 					if(menu.soundClick)
 						game.PA.Blip();
 				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
 					game.state = Game.STATE.LOSE;
-					System.out.println("Why");
+					score.updateScore();
+					game.resetScore();
 				}
 			}
 		}
@@ -84,20 +96,31 @@ public class MouseInput implements MouseListener {
 			if (mx >= 100*Game.widthRatio && mx <= 900*Game.widthRatio) {
 				if (my >= Game.heightRatio*250 && my <= Game.heightRatio*350) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
 					System.out.println("Right!!");
 					if(!game.stack.isEmpty()){
 						game.state = Game.STATE.CORRECT;
 						correct.setPrevious(2);
+						game.incrementScore();
 					}
-					else
-						game.state = Game.STATE.WIN;	
+					else{
+						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
 					if(menu.soundClick)
 						game.PA.Blip();
 				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				}
 			}
 		}
@@ -106,19 +129,30 @@ public class MouseInput implements MouseListener {
 			if (mx >= 100*Game.widthRatio && mx <= 900*Game.widthRatio) {
 				if (my >= Game.heightRatio*250 && my <= Game.heightRatio*350) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
 					if(!game.stack.isEmpty()){
 						game.state = Game.STATE.CORRECT;
 						correct.setPrevious(3);
+						game.incrementScore();
 					}
-					else
+					else{
 						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
 					if(menu.soundClick)
 						game.PA.Blip();
 				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				}
 			}
 		}
@@ -129,17 +163,28 @@ public class MouseInput implements MouseListener {
 					if(!game.stack.isEmpty()){
 						game.state = Game.STATE.CORRECT;
 						correct.setPrevious(1);
+						game.incrementScore();
 					}
-					else
+					else{
 						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
 					if(menu.soundClick)
 						game.PA.Blip();
 				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				}
 			}
 		}
@@ -150,18 +195,28 @@ public class MouseInput implements MouseListener {
 					if(!game.stack.isEmpty()){
 						game.state = Game.STATE.CORRECT;
 						correct.setPrevious(5);
+						game.incrementScore();
 					}
-					else
+					else{
 						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
 					if(menu.soundClick)
 						game.PA.Blip();
 				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
 					game.state = Game.STATE.LOSE;
-					correct.setPrevious(50);
+					score.updateScore();
+					game.resetScore();
 				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
 					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
 				}
 			}
 		}
