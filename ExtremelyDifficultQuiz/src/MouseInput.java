@@ -220,6 +220,230 @@ public class MouseInput implements MouseListener {
 				}
 			}
 		}
+		
+		else if (game.state == Game.STATE.Q7) {
+			if (mx >= 100*Game.widthRatio && mx <= 900*Game.widthRatio) {
+				if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(5);
+						game.incrementScore();
+					}
+					else{
+						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
+					if(menu.soundClick)
+						game.PA.Blip();
+				} else if (my >= Game.heightRatio*250 && my <= Game.heightRatio*350) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				}
+			}
+		}
+
+		else if (game.state == Game.STATE.Q8) {
+			if (mx >= 100*Game.widthRatio && mx <= 900*Game.widthRatio) {
+				if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(5);
+						game.incrementScore();
+					}
+					else{
+						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
+					if(menu.soundClick)
+						game.PA.Blip();
+				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*250 && my <= Game.heightRatio*350) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				}
+			}
+		}
+
+		else if (game.state == Game.STATE.Q9) {
+			if (mx >= 100*Game.widthRatio && mx <= 900*Game.widthRatio) {
+				if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(5);
+						game.incrementScore();
+					}
+					else{
+						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
+					if(menu.soundClick)
+						game.PA.Blip();
+				} else if (my >= Game.heightRatio*250 && my <= Game.heightRatio*350) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				}
+			}
+		}
+
+		else if (game.state == Game.STATE.Q10) {
+			if (mx >= 100*Game.widthRatio && mx <= 900*Game.widthRatio) {
+				if (my >= Game.heightRatio*250 && my <= Game.heightRatio*350) {
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(5);
+						game.incrementScore();
+					}
+					else{
+						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
+					if(menu.soundClick)
+						game.PA.Blip();
+				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				}
+			}
+		}
+
+		else if (game.state == Game.STATE.Q11) {
+			if (mx >= 100*Game.widthRatio && mx <= 900*Game.widthRatio) {
+				if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(5);
+						game.incrementScore();
+					}
+					else{
+						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
+					if(menu.soundClick)
+						game.PA.Blip();
+				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*250 && my <= Game.heightRatio*350) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				}
+			}
+		}
+
+		else if (game.state == Game.STATE.Q12) {
+			if (mx >= 100*Game.widthRatio && mx <= 900*Game.widthRatio) {
+				if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(5);
+						game.incrementScore();
+					}
+					else{
+						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
+					if(menu.soundClick)
+						game.PA.Blip();
+				} else if (my >= Game.heightRatio*250 && my <= Game.heightRatio*350) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				}
+			}
+		}
+
+		else if (game.state == Game.STATE.Q13) {
+			if (mx >= 100*Game.widthRatio && mx <= 900*Game.widthRatio) {
+				if (my >= Game.heightRatio*250 && my <= Game.heightRatio*350) {
+					if(!game.stack.isEmpty()){
+						game.state = Game.STATE.CORRECT;
+						correct.setPrevious(5);
+						game.incrementScore();
+					}
+					else{
+						game.state = Game.STATE.WIN;
+						game.incrementScore();
+						score.updateScore();
+						game.resetScore();
+					}
+					if(menu.soundClick)
+						game.PA.Blip();
+				} else if (my >= Game.heightRatio*550 && my <= Game.heightRatio*650) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*400 && my <= Game.heightRatio*500) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				} else if (my >= Game.heightRatio*700 && my <= Game.heightRatio*800) {
+					game.state = Game.STATE.LOSE;
+					score.updateScore();
+					game.resetScore();
+				}
+			}
+		}
 	}
 
 	@Override
