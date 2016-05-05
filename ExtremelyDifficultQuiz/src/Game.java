@@ -33,13 +33,13 @@ public class Game extends Canvas implements Runnable {
 	
 	private Thread thread;
 	private Menu menu;
-	private Handler handler;
 	private Q1 q1;
 	private Q2 q2;
 	private Q3 q3;
 	private Q4 q4;
 	private Q5 q5;
 	private Q7 q7;
+	private Q6 q6;
 	private Q8 q8;
 	private Q9 q9;
 	private Q10 q10;
@@ -63,9 +63,8 @@ public class Game extends Canvas implements Runnable {
 		highNames = score.getNames();
 		
 		menu = new Menu(this, highScores, highNames);
-		PA.Loop("res/bg.mp3");
+		PA.Loop();
 
-		handler = new Handler(this);
 		Dimension size = new Dimension((int) WIDTH, (int) HEIGHT);
 		setPreferredSize(size);
 		setMaximumSize(size);
@@ -81,6 +80,7 @@ public class Game extends Canvas implements Runnable {
 		q7 = new Q7(this, timer);
 		q8 = new Q8(this, timer);
 		q9 = new Q9(this, timer);
+		q6 = new Q6(this, timer);
 		q10 = new Q10(this, timer);
 		q11 = new Q11(this, timer);
 		q12 = new Q12(this, timer);
@@ -103,7 +103,6 @@ public class Game extends Canvas implements Runnable {
 		frame.setVisible(true);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
-
 		start();
 	}
 
@@ -120,51 +119,42 @@ public class Game extends Canvas implements Runnable {
 				if (num == 1) {
 					stack.push(q1);
 					questionList.remove(questionList.indexOf(1));
-					System.out.println(1);
 				} else if (num == 2) {
 					stack.push(q2);
 					questionList.remove(questionList.indexOf(2));
-					System.out.println(2);
 				} else if (num == 3) {
 					stack.push(q3);
 					questionList.remove(questionList.indexOf(3));
-					System.out.println(3);
 				} else if (num == 4) {
 					stack.push(q4);
 					questionList.remove(questionList.indexOf(4));
-					System.out.println(4);
 				} else if (num == 5) {
 					stack.push(q5);
 					questionList.remove(questionList.indexOf(5));
-					System.out.println(5);
+				}else if(num == 6){
+				stack.push(q6);
+					questionList.remove(questionList.indexOf(6));
 				}else if (num == 7) {
 					stack.push(q7);
 					questionList.remove(questionList.indexOf(7));
-					System.out.println(7);
 				}else if (num == 8) {
 					stack.push(q8);
 					questionList.remove(questionList.indexOf(8));
-					System.out.println(8);
 				}else if (num == 9) {
 					stack.push(q9);
 					questionList.remove(questionList.indexOf(9));
-					System.out.println(9);
 				}else if (num == 10) {
 					stack.push(q10);
 					questionList.remove(questionList.indexOf(10));
-					System.out.println(10);
 				}else if (num == 11) {
 					stack.push(q11);
 					questionList.remove(questionList.indexOf(11));
-					System.out.println(11);
 				}else if (num == 12) {
 					stack.push(q12);
 					questionList.remove(questionList.indexOf(12));
-					System.out.println(12);
 				}else if (num == 13) {
 					stack.push(q13);
 					questionList.remove(questionList.indexOf(13));
-					System.out.println(13);
 				}
 			}
 		}
@@ -172,7 +162,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public enum STATE {
-		MENU, GAME, Q1, Q2, Q3, Q4, Q5, Q7, Q8, Q9, Q10, Q11, Q12, Q13, CORRECT, LOSE, WIN
+		MENU, GAME, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, CORRECT, LOSE, WIN
 	};
 
 	public static STATE state = STATE.MENU;
@@ -256,6 +246,8 @@ public class Game extends Canvas implements Runnable {
 			q4.tick();
 		} else if (state == STATE.Q5) {
 			q5.tick();
+		} else if (state == STATE.Q6) {
+			q6.tick();
 		}else if (state == STATE.Q7) {
 			q7.tick();
 		}else if (state == STATE.Q8) {
@@ -307,6 +299,8 @@ public class Game extends Canvas implements Runnable {
 			q4.render(g);
 		} else if (state == STATE.Q5) {
 			q5.render(g);
+		} else if (state == STATE.Q6) {
+			q6.render(g);
 		}else if (state == STATE.Q7) {
 			q7.render(g);
 		}else if (state == STATE.Q8) {
