@@ -20,26 +20,25 @@ public class Q7 extends Question{
 
 	public void render(Graphics g){
 		g.setColor(Color.black);
-		g.fillRect(0, 0, Game.WIDTH + 20, Game.HEIGHT + 20);
+		g.fillRect(0, 0, (int)(Game.widthRatio *Game.WIDTH) + 20, (int)(Game.heightRatio *Game.HEIGHT) + 20);
 		g.setColor(Color.white);
-		g.fillOval(10, 10, 50, 50);
+		g.fillOval((int)(Game.widthRatio*10), (int)(Game.heightRatio *10), (int)(Game.widthRatio *50), (int)(Game.heightRatio *50));
 		g.setColor(Color.blue);
-		Font fnt = new Font("arial black", 1, 45);
+		Font fnt = new Font("arial black", 1, (int)(40*Math.min(Game.widthRatio, Game.heightRatio)));
 		g.setFont(fnt);
-		//g.drawString("1", 20, 50);
-		g.fillRect(100, 100, 1000, 100);
+		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*100), (int)(Game.widthRatio*1000), (int)(Game.heightRatio*100));
 		g.setColor(Color.white);
-		g.drawString("Hey Listen!", 150, 150);
+		g.drawString("Hey Listen!", (int)(game.widthRatio*150), (int)(game.heightRatio*150));
 		g.setColor(Color.blue);
-		g.fillRect(100, 250, 800, 100);
-		g.fillRect(100, 400, 800, 100);
-		g.fillRect(100, 550, 800, 100);
-		g.fillRect(100, 700, 800, 100);
+		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*250), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
+		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*400), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
+		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*550), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
+		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*700), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
 		g.setColor(Color.white);
-		g.drawString("Ok!", 120, 290);
-		g.drawString("I'm not going to the Dungeon...", 120, 440);
-		g.drawString("Shut up Navi!", 120, 590);
-		g.drawString("Better than Midna", 120, 740);
+		g.drawString("Ok!", (int)(Game.widthRatio*120), (int)(Game.heightRatio*290));
+		g.drawString("I'm not going to the Dungeon...", (int)(Game.widthRatio*120), (int)(Game.heightRatio*440));
+		g.drawString("Shut up Navi!", (int)(Game.widthRatio*120), (int)(Game.heightRatio*590));
+		g.drawString("Better than Midna", (int)(Game.widthRatio*120), (int)(Game.heightRatio*740));
 		timer.render(g);
 	}
 
@@ -55,6 +54,6 @@ public class Q7 extends Question{
 	}
 	
 	public Game.STATE getState(){
-		return Game.STATE.Q5;
+		return Game.STATE.Q7;
 	}
 }
