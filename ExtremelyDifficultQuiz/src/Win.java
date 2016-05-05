@@ -3,12 +3,16 @@ package src;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+ 
+
 
 public class Win {
 
 	private Game game;
 	private int count = 0;
-	priavate BufferedImage victory;
+	private BufferedImage victory;
 	public Win(Game game){
 		this.game = game;
 		BufferedImageLoader loader = new BufferedImageLoader();
