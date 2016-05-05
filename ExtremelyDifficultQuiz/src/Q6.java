@@ -28,7 +28,8 @@ public class Q6 extends Question{
 		g.setFont(fnt);
 		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*100), (int)(Game.widthRatio*1000), (int)(Game.heightRatio*100));
 		g.setColor(Color.white);
-		g.drawString("How many minions does the 4th boss of the molten core, Garr, have?", (int)(game.widthRatio*150), (int)(game.heightRatio*150));
+		g.drawString("How many minions does the 4th boss", (int)(Game.widthRatio*150), (int)(Game.heightRatio*150));
+		g.drawString("of the molten core, Garr, have?", (int)(Game.widthRatio*150), (int)(Game.heightRatio*190));
 		g.setColor(Color.blue);
 		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*250), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
 		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*400), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
