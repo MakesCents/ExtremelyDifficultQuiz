@@ -28,7 +28,7 @@ public class Win {
 		Font fnt = new Font("arial black", 1, (int)(40*Math.min(Game.widthRatio, Game.heightRatio)));
 		g.setColor(Color.white);
 		g.setFont(fnt);
-		g.drawString("You WINNNNN!!!!", (int)(Game.widthRatio*100), (int)(Game.heightRatio*100));
+		g.drawString("You WINNNNN!!!!", (int)(Game.widthRatio*425), (int)(Game.heightRatio*500));
 	}
 
 	public void tick(){
