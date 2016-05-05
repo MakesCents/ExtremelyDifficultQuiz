@@ -28,7 +28,8 @@ public class Q9 extends Question{
 		g.setFont(fnt);
 		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*100), (int)(Game.widthRatio*1000), (int)(Game.heightRatio*100));
 		g.setColor(Color.white);
-		g.drawString("Who are Sly Cooper's Companions Throughout the Series?", (int)(Game.widthRatio*150), (int)(Game.heightRatio*150));
+		g.drawString("Who are Sly Cooper's Companions", (int)(Game.widthRatio*150), (int)(Game.heightRatio*150));
+		g.drawString("Throughout the Series?", (int)(Game.widthRatio*150), (int)(Game.heightRatio*190));
 		g.setColor(Color.blue);
 		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*250), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
 		g.fillRect((int)(Game.widthRatio*100), (int)(Game.heightRatio*400), (int)(Game.widthRatio*800), (int)(Game.heightRatio*100));
