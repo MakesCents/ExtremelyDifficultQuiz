@@ -8,15 +8,19 @@ public class Win {
 
 	private Game game;
 	private int count = 0;
-
+	priavate BufferedImage victory;
 	public Win(Game game){
 		this.game = game;
-
+		BufferedImageLoader loader = new BufferedImageLoader();
+		try {
+			victory = loader.loadImage("/res/Victory Screen.png");
+		}catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 
 	public void render (Graphics g){
-		g.setColor(Color.black);
-		g.fillRect(0, 0, (int)(Game.widthRatio*Game.WIDTH), (int)(Game.heightRatio*Game.HEIGHT));
+		g.drawImage(victory, 0, 0, (int)(Game.widthRatio *Game.WIDTH) + 20, (int)(Game.heightRatio *Game.HEIGHT) + 20, game);
 		Font fnt = new Font("arial black", 1, (int)(40*Math.min(Game.widthRatio, Game.heightRatio)));
 		g.setColor(Color.white);
 		g.setFont(fnt);
