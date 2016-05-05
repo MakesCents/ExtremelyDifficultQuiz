@@ -60,7 +60,7 @@ public class Timer {
 		this.time = time;
 	}
 	public void restart(){
-		setTime(100);
+		setTime(10);
 		start();
 	}
 
