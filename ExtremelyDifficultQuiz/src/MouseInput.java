@@ -227,13 +227,15 @@ public class MouseInput implements MouseListener {
 
 		else if (game.state == Game.STATE.Q13) {
 			if (mx >= 100 * Game.widthRatio && mx <= 900 * Game.widthRatio) {
-				incorrect();
-			} else if (my >= Game.heightRatio * 400 && my <= Game.heightRatio * 500) {
-				incorrect();
-			} else if (my >= Game.heightRatio * 550 && my <= Game.heightRatio * 650) {
-				correct();
-			} else if (my >= Game.heightRatio * 700 && my <= Game.heightRatio * 800) {
-				incorrect();
+				if (my >= Game.heightRatio * 250 && my <= Game.heightRatio * 350) {
+					incorrect();
+				} else if (my >= Game.heightRatio * 400 && my <= Game.heightRatio * 500) {
+					incorrect();
+				} else if (my >= Game.heightRatio * 550 && my <= Game.heightRatio * 650) {
+					correct();
+				} else if (my >= Game.heightRatio * 700 && my <= Game.heightRatio * 800) {
+					incorrect();
+				}
 			}
 		}
 	}
